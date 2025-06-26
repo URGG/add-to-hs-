@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add Leslie's Card</title>
+  <meta name="theme-color" content="#000000" />
+  <link rel="manifest" href="/manifest.json" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #fff;
+      color: #000;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+    
+    .header {
+      margin-bottom: 40px;
+    }
+    
+    .logo {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+    
+    .subtitle {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 12px;
+    }
+    
+    .person-name {
+      font-size: 20px;
+      font-weight: 600;
+      color: #000;
+    }
+    
+    .install-section {
+      margin: 30px 0;
+    }
+    
+    .install-button {
+      background: #000;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 16px 32px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      transition: all 0.2s ease;
+      display: block;
+      margin-bottom: 20px;
+    }
+    
+    .install-button:hover {
+      background: #333;
+      transform: translateY(-1px);
+    }
+    
+    .install-button:active {
+      transform: translateY(0);
+    }
+    
+    .qr-section {
+      background: #f8f8f8;
+      border: 2px solid #e5e5e5;
+      border-radius: 16px;
+      padding: 30px;
+      margin: 30px 0;
+    }
+    
+    .qr-title {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+    
+    .qr {
+      margin: 0 auto 20px;
+      width: 200px;
+      height: 200px;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid #ddd;
+    }
+    
+    .qr-note {
+      font-size: 12px;
+      color: #888;
+      font-style: italic;
+    }
+    
+    .ios-instructions {
+      display: none;
+      background: #fff;
+      border: 2px solid #000;
+      border-radius: 16px;
+      padding: 24px;
+      text-align: left;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      max-width: 400px;
+      z-index: 1000;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    
+    .popup-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+    }
+    
+    .close-popup {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: #f0f0f0;
+      border: none;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease;
+    }
+    
+    .close-popup:hover {
+      background: #e0e0e0;
+    }
+    
+    .ios-instructions h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      text-align: center;
+      color: #000;
+    }
+    
+    .step {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 12px;
+      font-size: 15px;
+    }
+    
+    .step-number {
+      background: #000;
+      color: #fff;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+      margin-right: 12px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    
+    .step-text {
+      flex: 1;
+    }
+    
+    .step-text strong {
+      color: #000;
+    }
+    
+    .share-icon {
+      display: inline-block;
+      margin: 0 4px;
+      font-size: 16px;
+    }
+    
+    .success-message {
+      display: none;
+      background: #000;
+      color: #fff;
+      padding: 16px;
+      border-radius: 12px;
+      margin: 20px 0;
+      font-weight: 500;
+    }
+    
+    .fallback-message {
+      display: none;
+      background: #f8f8f8;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px 0;
+      font-size: 14px;
+      color: #666;
+    }
+    
+    .footer {
+      margin-top: 40px;
+      font-size: 12px;
+      color: #999;
+    }
+    
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 10px;
+      }
+      
+      .qr {
+        width: 180px;
+        height: 180px;
+      }
+      
+      .qr-section {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo">ADS4U</div>
+      <div class="subtitle">Save this contact card to your phone</div>
+      <div class="person-name">Leslie Singer</div>
+    </div>
+
+    <div class="install-section">
+      <button class="install-button" id="installBtn">
+        📱 Add to Home Screen
+      </button>
+    </div>
+
+    <div class="qr-section">
+      <div class="qr-title">Or scan with your camera</div>
+      <div id="qrcode" class="qr"></div>
+      <div class="qr-note">Point your camera at the QR code above</div>
+    </div>
+
+    <div class="popup-overlay" id="popupOverlay"></div>
+    
+    <div class="ios-instructions" id="iosInstructions">
+      <button class="close-popup" id="closePopup">×</button>
+      <h3>📱 Add to Home Screen</h3>
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-text">
+          Tap the <strong>Share</strong> button <span class="share-icon">⬆️</span> at the bottom of Safari
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-text">
+          Scroll down and tap <strong>"Add to Home Screen"</strong>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-text">
+          Tap <strong>"Add"</strong> in the top-right corner
+        </div>
+      </div>
+    </div>
+    
+    <div class="success-message" id="successMessage">
+      ✅ Successfully added to your home screen!
+    </div>
+    
+    <div class="fallback-message" id="fallbackMessage">
+      💡 <strong>Tip:</strong> You can bookmark this page or scan the QR code with your camera to access Leslie's contact information.
+    </div>
+
+    <div class="footer">
+      &copy; 2025 ADS4U
+    </div>
+  </div>
+
+  <!-- QR Code Script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.3/qrcode.min.js"></script>
+  <script>
+    // Generate QR Code
+    document.addEventListener('DOMContentLoaded', function() {
+      const qrElement = document.getElementById('qrcode');
+      if (typeof QRCode !== 'undefined') {
+        QRCode.toCanvas(
+          qrElement,
+          'https://ads4u.store/leslie-business-card/',
+          { 
+            width: 200, 
+            margin: 2,
+            color: { 
+              dark: '#000000', 
+              light: '#ffffff' 
+            },
+            errorCorrectionLevel: 'M'
+          },
+          function (error) {
+            if (error) {
+              console.error('QR Code generation error:', error);
+              qrElement.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:200px;background:#f0f0f0;border-radius:8px;color:#666;">QR Code Loading...</div>';
+            }
+          }
+        );
+      } else {
+        // Fallback if QR library doesn't load
+        qrElement.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:200px;background:#f0f0f0;border-radius:8px;color:#666;text-align:center;padding:20px;">Visit:<br>ads4u.store/leslie-business-card</div>';
+      }
+    });
+
+    // PWA Installation Logic
+    document.addEventListener('DOMContentLoaded', function() {
+      let deferredPrompt;
+      const installBtn = document.getElementById('installBtn');
+      const iosInstructions = document.getElementById('iosInstructions');
+      const popupOverlay = document.getElementById('popupOverlay');
+      const closePopup = document.getElementById('closePopup');
+      const successMessage = document.getElementById('successMessage');
+      const fallbackMessage = document.getElementById('fallbackMessage');
+
+      // Detect device type
+      const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent.toLowerCase());
+      const isStandalone = ('standalone' in window.navigator) && window.navigator.standalone;
+      const isAndroid = /android/i.test(navigator.userAgent.toLowerCase());
+
+      console.log('Device detection:', { isIOS, isStandalone, isAndroid });
+
+      // Handle beforeinstallprompt event (Android/Chrome/Edge)
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        console.log('Install prompt available');
+      });
+
+      // Install button click handler
+      installBtn.addEventListener('click', async () => {
+        console.log('Install button clicked');
+        if (deferredPrompt) {
+          // Direct install for supported browsers
+          deferredPrompt.prompt();
+          const { outcome } = await deferredPrompt.userChoice;
+          
+          if (outcome === 'accepted') {
+            successMessage.style.display = 'block';
+            installBtn.style.display = 'none';
+            console.log('User accepted the install prompt');
+          }
+          
+          deferredPrompt = null;
+        } else if (isIOS && !isStandalone) {
+          // Show popup instructions for iOS
+          showIOSInstructions();
+        } else {
+          // Fallback for other browsers
+          fallbackMessage.style.display = 'block';
+          setTimeout(() => {
+            fallbackMessage.style.display = 'none';
+          }, 5000);
+        }
+      });
+
+      // Show iOS instructions popup
+      function showIOSInstructions() {
+        popupOverlay.style.display = 'block';
+        iosInstructions.style.display = 'block';
+      }
+
+      // Hide iOS instructions popup
+      function hideIOSInstructions() {
+        popupOverlay.style.display = 'none';
+        iosInstructions.style.display = 'none';
+      }
+
+      // Close popup event listeners
+      if (closePopup) {
+        closePopup.addEventListener('click', hideIOSInstructions);
+      }
+      if (popupOverlay) {
+        popupOverlay.addEventListener('click', hideIOSInstructions);
+      }
+
+      // Close popup with escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          hideIOSInstructions();
+        }
+      });
+
+      // Handle successful installation
+      window.addEventListener('appinstalled', () => {
+        successMessage.style.display = 'block';
+        installBtn.style.display = 'none';
+        hideIOSInstructions();
+        console.log('PWA was installed');
+      });
+
+      // Update button text based on device
+      if (isIOS && !isStandalone) {
+        installBtn.textContent = '📱 Add to Home Screen';
+      } else if (isStandalone) {
+        installBtn.style.display = 'none';
+        successMessage.style.display = 'block';
+      }
+    });
+
+    // Register Service Worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js')
+        .then(registration => {
+          console.log('Service Worker registered successfully:', registration);
+        })
+        .catch(error => {
+          console.error('Service Worker registration failed:', error);
+        });
+    }
+  </script>
+</body>
+</html>
