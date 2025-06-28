@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>QR Code Test</title>
+  <script src="https://unpkg.com/qrcode@1.5.3/build/qrcode.min.js"></script>
+</head>
+<body style="font-family:sans-serif; text-align:center; padding:40px;">
+
+  <h2>Test QR Code</h2>
+  <div id="qrcode"></div>
+
+  <script>
+    const targetElement = document.getElementById("qrcode");
+    const url = "https://ads4u.store/leslie-business-card/";
+
+    QRCode.toCanvas(targetElement, url, { width: 200 }, function (error) {
+      if (error) console.error(error);
+      console.log("QR code successfully generated!");
+    });
+  </script>
+
+</body>
+</html>

@@ -1,882 +1,883 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Add Leslie's Card</title>
-  <meta name="theme-color" content="#000000" />
-  <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiTGVzbGllIFNpbmdlciAtIEJ1c2luZXNzIENhcmQiLCJzaG9ydF9uYW1lIjoiTGVzbGllJ3MgQ2FyZCIsImRlc2NyaXB0aW9uIjoiTGVzbGllIFNpbmdlciBCdXNpbmVzcyBDb250YWN0IEluZm9ybWF0aW9uIiwic3RhcnRfdXJsIjoiLyIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiMwMDAwMDAiLCJ0aGVtZV9jb2xvciI6IiMwMDAwMDAiLCJpY29ucyI6W3sic3JjIjoiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2FXUjBhRDBpTWpRd0lpQm9aV2xuYUhROUlqSTBNQ0lpSUhacFpYZENiM2c5SWpBZ01DQXlOREFnTWpRd0lpQm1hV3hzUFNJak1EQXdJaUI0Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TUM5emRtY2lQZ29nSUR4eVpXTjBJSGRwWkhSb1BTSXlOREFpSUdobGFXZG9kRDBpTWpRd0lpQm1hV3hzUFNJak1EQXdJaTgrQ2lBZ1BIUmxlSFFnZUQwaU5qQWlJSGs5SWpFeU1DSWdabWxzYkQwaUkzZG1aaUlnWm05dWRDMW1ZVzFwYkhrOUlrRnlhV0ZzTFVkU0lpQm1iMjUwTFhOcGVtVTlJak13SWlCMFpYaDBMV0Z1WTJodmNqMGliV2xrWkd4bElqNE1QQzlwUEM0S0lDQThaM0psWVhSbGNpQjRNVDBpTXpBaUlIa3hQU0l4TmpBaUlIZ3lQU0l5TVRBaUlIa3lQU0l4TmpBaUlHbGtQU0puY21Ga1pXNTBJaUJuY21Ga2FXVnVkRlZ1YVhSelBTSmpiMjlrYVc1aGRHVVRjM2x6ZEdWdElpQm5jbUZrYVdWdWRGUnlZVzV6Wm05eWJUMGljbTkwWVhSbEtEa3djQ0I4SUhOamRHVWdNbVJrU1VoS0x5bDBZV3h1WVNCMGIzSlNZV1JwWVc1ektHbGtJMEJuY21Ga2FXVDNEUF81WEJNWVNJWVdDSXgxamlvUUEwZTBTOGFHSXg5WkNmMlNjQzlXSXg5WkNmMlNjQzlXSXg5WkNmMlMw... [truncated for brevity]" />
-  <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE4MCAxODAiIGZpbGw9IiMwMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHJlY3Qgd2lkdGg9IjE4MCIgaGVpZ2h0PSIxODAiIGZpbGw9IiMwMDAiLz4KICA8dGV4dCB4PSI5MCIgeT0iOTAiIGZpbGw9IiNmZmYiIGZvbnQtZmFtaWx5PSJBcmlhbC1HUiIgZm9udC1zaXplPSIzNiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TEM8L3RleHQ+Cjwvc3ZnPg==" />
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-      background: #000;
-      color: #fff;
-      min-height: 100vh;
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Leslie's Card</title>
+    <meta name="theme-color" content="#000000" />
+    <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiTGVzbGllIFNpbmdlciAtIEJ1c2luZXNzIENhcmQiLCJzaG9ydF9uYW1lIjoiTGVzbGllJ3MgQ2FyZCIsImRlc2NyaXB0aW9uIjoiTGVzbGllIFNpbmdlciBCdXNpbmVzcyBDb250YWN0IEluZm9ybWF0aW9uIiwic3RhcnRfdXJsIjoiLyIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiMwMDAwMDAiLCJ0aGVtZV9jb2xvciI6IiMwMDAwMDAiLCJpY29ucyI6W3sic3JjIjoiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2FXUjBhRDBpTWpRd0lpQm9aV2xuYUhROUlqSTBNQ0lpSUhacFpYZENiM2c5SWpBZ01DQXlOREFnTWpRd0lpQm1hV3hzUFNJak1EQXdJaUI0Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TUM5emRtY2lQZ29nSUR4eVpXTjBJSGRwWkhSb1BTSXlOREFpSUdobGFXZG9kRDBpTWpRd0lpQm1hV3hzUFNJak1EQXdJaTgrQ2lBZ1BIUmxlSFFnZUQwaU5qQWlJSGs5SWpFeU1DSWdabWxzYkQwaUkzZG1aaUlnWm05dWRDMW1ZVzFwYkhrOUlrRnlhV0ZzTFVkU0lpQm1iMjUwTFhOcGVtVTlJak13SWlCMFpYaDBMV0Z1WTJodmNqMGliV2xrWkd4bElqNE1QQzlwUEM0S0lDQThaM0psWVhSbGNpQjRNVDBpTXpBaUlIa3hQU0l4TmpBaUlIZ3lQU0l5TVRBaUlIa3lQU0l4TmpBaUlHbGtQU0puY21Ga1pXNTBJaUJuY21Ga2FXVnVkRlZ1YVhSelBTSmpiMjlrYVc1aGRHVVRjM2x6ZEdWdElpQm5jbUZrYVdWdWRGUnlZVzV6Wm05eWJUMGljbTkwWVhSbEtEa3djQ0I4SUhOamRHVWdNbVJrU1VoS0x5bDBZV3h1WVNCMGIzSlNZV1JwWVc1ektHbGtJMEJuY21Ga2FXVDNEUF81WEJNWVNJWVdDSXgxamlvUUEwZTBTOGFHSXg5WkNmMlNjQzlXSXg5WkNmMlNjQzlXSXg5WkNmMlMw... [truncated for brevity]" />
+    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE4MCAxODAiIGZpbGw9IiMwMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHJlY3Qgd2lkdGg9IjE4MCIgaGVpZ2h0PSIxODAiIGZpbGw9IiMwMDAiLz4KICA8dGV4dCB4PSI5MCIgeT0iOTAiIGZpbGw9IiNmZmYiIGZvbnQtZmFtaWx5PSJBcmlhbC1HUiIgZm9udC1zaXplPSIzNiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TEM8L3RleHQ+Cjwvc3ZnPg==" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        background: #000;
+        color: #fff;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        line-height: 1.6;
+        position: relative;
+        overflow-x: hidden;
+        }
+        
+        body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(ellipse at center, #1a1a1a 0%, #000 70%);
+        z-index: -1;
+        }
+        
+        .container {
+        max-width: 420px;
+        width: 100%;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(20px);
+        border-radius: 28px;
+        padding: 45px 35px;
+        box-shadow: 
+            0 25px 50px rgba(0, 0, 0, 0.5),
+            0 0 0 1px rgba(255, 255, 255, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        position: relative;
+        animation: slideInUp 0.8s ease-out;
+        }
+        
+        @keyframes slideInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        }
+        
+        .header {
+        margin-bottom: 45px;
+        }
+        
+        .logo {
+        font-size: 38px;
+        font-weight: 900;
+        margin-bottom: 12px;
+        letter-spacing: -1px;
+        background: linear-gradient(135deg, #000 0%, #333 50%, #000 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .subtitle {
+        font-size: 16px;
+        color: #666;
+        margin-bottom: 20px;
+        font-weight: 500;
+        }
+        
+        .person-name {
+        font-size: 28px;
+        font-weight: 800;
+        color: #000;
+        margin-bottom: 8px;
+        letter-spacing: -0.5px;
+        }
+        
+        .person-title {
+        font-size: 15px;
+        color: #888;
+        font-style: italic;
+        font-weight: 400;
+        }
+        
+        .install-section {
+        margin: 35px 0;
+        }
+        
+        .install-button {
+        background: linear-gradient(135deg, #000 0%, #1a1a1a 50%, #000 100%);
+        color: #fff;
+        border: none;
+        border-radius: 18px;
+        padding: 22px 36px;
+        font-size: 17px;
+        font-weight: 700;
+        cursor: pointer;
+        width: 100%;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 25px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 
+            0 8px 20px rgba(0, 0, 0, 0.4),
+            0 0 0 1px rgba(255, 255, 255, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        text-decoration: none;
+        }
+        
+        .install-button:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 
+            0 15px 35px rgba(0, 0, 0, 0.6),
+            0 0 0 1px rgba(255, 255, 255, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        background: linear-gradient(135deg, #1a1a1a 0%, #333 50%, #1a1a1a 100%);
+        }
+        
+        .install-button:active {
+        transform: translateY(-1px) scale(0.98);
+        transition: all 0.1s ease;
+        }
+        
+        .install-button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        transition: left 0.6s ease;
+        }
+        
+        .install-button:hover::before {
+        left: 100%;
+        }
+        
+        .install-icon {
+        font-size: 20px;
+        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+        }
+        
+        .qr-section {
+        background: rgba(255, 255, 255, 0.9);
+        border: 2px solid rgba(0, 0, 0, 0.08);
+        border-radius: 24px;
+        padding: 35px;
+        margin: 35px 0;
+        backdrop-filter: blur(10px);
+        box-shadow: 
+            inset 0 1px 0 rgba(255, 255, 255, 0.5),
+            0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .qr-title {
+        font-size: 18px;
+        color: #333;
+        margin-bottom: 25px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        }
+        
+        .qr-container {
+        margin: 0 auto 25px;
+        width: 220px;
+        height: 220px;
+        border-radius: 20px;
+        overflow: hidden;
+        background: #fff;
+        border: 3px solid #e8e8e8;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 
+            0 8px 25px rgba(0, 0, 0, 0.15),
+            inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        position: relative;
+        }
+        
+        .qr-note {
+        font-size: 14px;
+        color: #666;
+        font-style: italic;
+        font-weight: 500;
+        }
+        
+        .loading-spinner {
+        width: 50px;
+        height: 50px;
+        border: 5px solid #f0f0f0;
+        border-top: 5px solid #000;
+        border-radius: 50%;
+        animation: spin 1.2s linear infinite;
+        }
+        
+        @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+        }
+        
+        .ios-instructions {
+        display: none;
+        background: #fff;
+        border-radius: 28px;
+        padding: 40px 32px;
+        text-align: left;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 92%;
+        max-width: 450px;
+        z-index: 1000;
+        box-shadow: 
+            0 30px 80px rgba(0, 0, 0, 0.4),
+            0 0 0 1px rgba(0, 0, 0, 0.1);
+        animation: popupSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        max-height: 90vh;
+        overflow-y: auto;
+        }
+        
+        @keyframes popupSlideIn {
+        from {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.8);
+        }
+        to {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        }
+        
+        .popup-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 999;
+        backdrop-filter: blur(4px);
+        animation: fadeIn 0.3s ease-out;
+        
+        }
+        
+        @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+        }
+        
+        .close-popup {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: #f5f5f5;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        font-size: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        color: #666;
+        font-weight: 300;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .close-popup:hover {
+        background: #e8e8e8;
+        transform: scale(1.1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .popup-header {
+        text-align: center;
+        margin-bottom: 30px;
+        padding-right: 30px;
+        }
+        
+        .popup-icon {
+        font-size: 56px;
+        margin-bottom: 16px;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+        }
+        
+        .ios-instructions h3 {
+        font-size: 24px;
+        font-weight: 800;
+        margin-bottom: 12px;
+        color: #000;
+        letter-spacing: -0.5px;
+        }
+        
+        .popup-subtitle {
+        font-size: 16px;
+        color: #666;
+        margin-bottom: 30px;
+        font-weight: 500;
+        }
+        
+        .step {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 25px;
+        font-size: 16px;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 16px;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .step:hover {
+        background: #e9ecef;
+        transform: translateX(6px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .step-number {
+        background: linear-gradient(135deg, #000 0%, #333 100%);
+        color: #fff;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 800;
+        margin-right: 18px;
+        flex-shrink: 0;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .step-text {
+        flex: 1;
+        line-height: 1.6;
+        padding-top: 1px;
+        }
+        
+        .step-text strong {
+        color: #000;
+        font-weight: 700;
+        }
+        
+        .share-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 6px;
+        font-size: 16px;
+        background: #000;
+        color: white;
+        padding: 6px 8px;
+        border-radius: 8px;
+        font-weight: 600;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+        
+        .success-message {
+        display: none;
+        background: linear-gradient(135deg, #000 0%, #333 100%);
+        color: #fff;
+        padding: 22px;
+        border-radius: 18px;
+        margin: 25px 0;
+        font-weight: 700;
+        font-size: 16px;
+        box-shadow: 
+            0 8px 20px rgba(0, 0, 0, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        }
+        
+        .fallback-message {
+        display: none;
+        background: rgba(0, 0, 0, 0.05);
+        border: 2px solid rgba(0, 0, 0, 0.1);
+        border-radius: 18px;
+        padding: 25px;
+        margin: 25px 0;
+        font-size: 15px;
+        color: #555;
+        font-weight: 500;
+        line-height: 1.5;
+        }
+        
+        .device-status {
+        margin: 20px 0;
+        padding: 15px;
+        border-radius: 12px;
+        font-size: 14px;
+        font-weight: 600;
+        text-align: center;
+        }
+        
+        .device-status.supported {
+        background: rgba(0, 128, 0, 0.1);
+        color: #006400;
+        border: 1px solid rgba(0, 128, 0, 0.2);
+        }
+        
+        .device-status.ios {
+        background: rgba(0, 123, 255, 0.1);
+        color: #0056b3;
+        border: 1px solid rgba(0, 123, 255, 0.2);
+        }
+        
+        .device-status.installed {
+        background: rgba(0, 128, 0, 0.1);
+        color: #006400;
+        border: 1px solid rgba(0, 128, 0, 0.2);
+        }
+        
+        .footer {
+        margin-top: 50px;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.6);
+        font-weight: 400;
+        }
+        
+        @media (max-width: 480px) {
+        .container {
+            padding: 35px 25px;
+            margin: 15px;
+            border-radius: 24px;
+        }
+        
+        .qr-container {
+            width: 200px;
+            height: 200px;
+        }
+        
+        .qr-section {
+            padding: 25px;
+        }
+        
+        .ios-instructions {
+            width: 95%;
+            padding: 30px 25px;
+            border-radius: 24px;
+        }
+        
+        .step {
+            padding: 16px;
+            font-size: 15px;
+        }
+        
+        .popup-header {
+            padding-right: 25px;
+        }
+        
+        .install-button {
+            padding: 20px 32px;
+            font-size: 16px;
+        }
+        }
+    </style>
+    </head>
+    <body>
+    <div class="container">
+        <div class="header">
+        <div class="logo">ADS4U</div>
+        <div class="subtitle">Save this contact card to your phone</div>
+        <div class="person-name">Leslie Singer</div>
+        <div class="person-title">Business Professional</div>
+        </div>
+
+        <div class="device-status" id="deviceStatus"></div>
+
+        <div class="install-section">
+        <button class="install-button" id="installBtn">
+            <span class="install-icon">📱</span>
+            <span id="installText">Add to Home Screen</span>
+        </button>
+        </div>
+
+        <div class="qr-section">
+        <div class="qr-title">
+            <span>📷</span>
+            <span>Or scan with your camera</span>
+        </div>
+        <div class="qr-container">
+            <div id="qrcode"></div>
+        </div>
+        <div class="qr-note">Point your camera at the QR code above</div>
+        </div>
+
+        <div class="popup-overlay" id="popupOverlay"></div>
+        
+        <div class="ios-instructions" id="iosInstructions">
+        <button class="close-popup" id="closePopup">×</button>
+        <div class="popup-header">
+            <div class="popup-icon">📱</div>
+            <h3>Add to Home Screen</h3>
+            <div class="popup-subtitle">Follow these steps to install Leslie's card</div>
+        </div>
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-text">
+            Tap the <strong>Share</strong> button <span class="share-icon">⬆️</span> at the bottom of Safari
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-text">
+            Scroll down and tap <strong>"Add to Home Screen"</strong>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-text">
+            Tap <strong>"Add"</strong> in the top-right corner
+            </div>
+        </div>
+        </div>
+        
+        <div class="success-message" id="successMessage">
+        <span>✅</span>
+        <span>Successfully added to your home screen!</span>
+        </div>
+        
+        <div class="fallback-message" id="fallbackMessage">
+        <strong>💡 Tip:</strong> You can bookmark this page or scan the QR code with your camera to access Leslie's contact information anytime.
+        </div>
+
+        <div class="footer">
+        &copy; 2025 ADS4U
+        </div>
+    </div>
+    <!-- Load QRCode Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.3/qrcode.min.js" integrity="sha512-E4hfd5F4l3DJrgUg53bPY2mvqFX+pYAkq0TSTxNdJAv9oYJqWZ1DfS5Y3+ff6Z7qCVN3kHZ6D4qSLW+GH6+2gA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        // Enhanced PWA Installation with better device detection
+        class PWAInstaller {
+        constructor() {
+            this.deferredPrompt = null;
+            this.installBtn = document.getElementById('installBtn');
+            this.installText = document.getElementById('installText');
+            this.iosInstructions = document.getElementById('iosInstructions');
+            this.popupOverlay = document.getElementById('popupOverlay');
+            this.closePopup = document.getElementById('closePopup');
+            this.successMessage = document.getElementById('successMessage');
+            this.fallbackMessage = document.getElementById('fallbackMessage');
+            this.deviceStatus = document.getElementById('deviceStatus');
+            
+            this.init();
+        }
+        
+        init() {
+            this.detectDevice();
+            this.setupEventListeners();
+            this.updateUI();
+        }
+        
+        detectDevice() {
+            const ua = navigator.userAgent.toLowerCase();
+            this.isIOS = /iphone|ipad|ipod/.test(ua);
+            this.isAndroid = /android/.test(ua);
+            this.isSafari = /safari/.test(ua) && !/chrome/.test(ua);
+            this.isChrome = /chrome/.test(ua);
+            this.isFirefox = /firefox/.test(ua);
+            this.isEdge = /edge|edg/.test(ua);
+            this.isStandalone = window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
+            
+            console.log('Device detection:', {
+            isIOS: this.isIOS,
+            isAndroid: this.isAndroid,
+            isSafari: this.isSafari,
+            isChrome: this.isChrome,
+            isStandalone: this.isStandalone
+            });
+        }
+        
+        setupEventListeners() {
+            // PWA install prompt
+            window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            this.deferredPrompt = e;
+            console.log('Install prompt available');
+            this.updateUI();
+            });
+            
+            // Install button click
+            this.installBtn.addEventListener('click', () => this.handleInstall());
+            
+            // Close popup listeners
+            if (this.closePopup) {
+            this.closePopup.addEventListener('click', () => this.hideIOSInstructions());
+            }
+            if (this.popupOverlay) {
+            this.popupOverlay.addEventListener('click', () => this.hideIOSInstructions());
+            }
+            
+            // Keyboard shortcuts
+            document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') this.hideIOSInstructions();
+            });
+            
+            // App installed event
+            window.addEventListener('appinstalled', () => {
+            this.showSuccess();
+            console.log('PWA installed successfully');
+            });
+            
+            // Check for display mode changes
+            window.matchMedia('(display-mode: standalone)').addEventListener('change', (e) => {
+            if (e.matches) {
+                this.showSuccess();
+            }
+            });
+        }
+        
+        updateUI() {
+            let statusText = '';
+            let statusClass = '';
+            
+            if (this.isStandalone) {
+            statusText = '✅ Already installed as an app!';
+            statusClass = 'installed';
+            this.installBtn.style.display = 'none';
+            this.showSuccess();
+            } else if (this.deferredPrompt) {
+            statusText = '🚀 Ready to install - click the button below!';
+            statusClass = 'supported';
+            this.installText.textContent = 'Install App';
+            } else if (this.isIOS && this.isSafari) {
+            statusText = '📱 iOS Safari detected - use Share button instructions';
+            statusClass = 'ios';
+            this.installText.textContent = 'Show Install Instructions';
+            } else if (this.isIOS) {
+            statusText = '⚠️ Please open in Safari to install';
+            statusClass = 'ios';
+            this.installText.textContent = 'Open in Safari';
+            } else {
+            statusText = '💡 Bookmark this page for easy access';
+            statusClass = 'supported';
+            this.installText.textContent = 'Bookmark Page';
+            }
+            
+            this.deviceStatus.textContent = statusText;
+            this.deviceStatus.className = `device-status ${statusClass}`;
+        }
+        
+        async handleInstall() {
+            if (this.deferredPrompt) {
+            // Native PWA install
+            try {
+                this.deferredPrompt.prompt();
+                const { outcome } = await this.deferredPrompt.userChoice;
+                
+                if (outcome === 'accepted') {
+                this.showSuccess();
+                } else {
+                console.log('User dismissed install prompt');
+                }
+                
+                this.deferredPrompt = null;
+            } catch (error) {
+                console.error('Install prompt failed:', error);
+                this.showFallback();
+            }
+            } else if (this.isIOS && this.isSafari) {
+            // Show iOS instructions
+            this.showIOSInstructions();
+            } else if (this.isIOS && !this.isSafari) {
+            // Redirect to Safari
+            const safariUrl = `x-web-search://?${encodeURIComponent(window.location.href)}`;
+            window.location.href = safariUrl;
+            setTimeout(() => {
+                this.showFallback();
+            }, 2000);
+            } else {
+            // Fallback - bookmark or manual save
+            this.showFallback();
+            }
+        }
+        
+        showIOSInstructions() {
+            this.popupOverlay.style.display = 'block';
+            this.iosInstructions.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        hideIOSInstructions() {
+            this.popupOverlay.style.display = 'none';
+            this.iosInstructions.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        showSuccess() {
+            this.successMessage.style.display = 'flex';
+            this.installBtn.style.display = 'none';
+            this.deviceStatus.textContent = '✅ Successfully installed!';
+            this.deviceStatus.className = 'device-status installed';
+            this.hideIOSInstructions();
+        }
+        
+        showFallback() {
+            this.fallbackMessage.style.display = 'block';
+            setTimeout(() => {
+            this.fallbackMessage.style.display = 'none';
+            }, 8000);
+        }
+        }
+
+        // QR Code Generator
+        class QRGenerator {
+        constructor() {
+            this.qrElement = document.getElementById('qrcode');
+            this.qrUrl = window.location.href || 'https://ads4u.store/leslie-business-card/';
+            this.init();
+        }
+        
+        init() {
+            this.showLoading();
+            this.generateQR();
+        }
+        
+        showLoading() {
+            this.qrElement.innerHTML = '<div class="loading-spinner"></div>';
+        }
+        
+        generateQR() {
+            const attemptGeneration = () => {
+            if (typeof QRCode !== 'undefined') {
+                this.qrElement.innerHTML = '';
+                const canvas = document.createElement('canvas');
+                this.qrElement.appendChild(canvas);
+                
+                QRCode.toCanvas(
+                canvas,
+                this.qrUrl,
+                { 
+                    width: 220,
+                    height: 220,
+                    margin: 2,
+                    color: { 
+                    dark: '#000000', 
+                    light: '#ffffff' 
+                    },
+                    errorCorrectionLevel: 'M'
+                },
+                (error) => {
+                    if (error) {
+                    console.error('QR Code generation error:', error);
+                    this.showFallbackQR();
+                    } else {
+                    console.log('QR Code generated successfully');
+                    }
+                }
+                );
+            } else {
+                setTimeout(attemptGeneration, 200);
+            }
+            };
+            
+            attemptGeneration();
+        }
+        
+ showFallbackQR() {
+    const fallbackHTML = `
+    <div style="
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 20px;
-      line-height: 1.6;
-      position: relative;
-      overflow-x: hidden;
-    }
-    
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(ellipse at center, #1a1a1a 0%, #000 70%);
-      z-index: -1;
-    }
-    
-    .container {
-      max-width: 420px;
-      width: 100%;
-      text-align: center;
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(20px);
-      border-radius: 28px;
-      padding: 45px 35px;
-      box-shadow: 
-        0 25px 50px rgba(0, 0, 0, 0.5),
-        0 0 0 1px rgba(255, 255, 255, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      position: relative;
-      animation: slideInUp 0.8s ease-out;
-    }
-    
-    @keyframes slideInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    .header {
-      margin-bottom: 45px;
-    }
-    
-    .logo {
-      font-size: 38px;
-      font-weight: 900;
-      margin-bottom: 12px;
-      letter-spacing: -1px;
-      background: linear-gradient(135deg, #000 0%, #333 50%, #000 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    
-    .subtitle {
-      font-size: 16px;
-      color: #666;
-      margin-bottom: 20px;
-      font-weight: 500;
-    }
-    
-    .person-name {
-      font-size: 28px;
-      font-weight: 800;
-      color: #000;
-      margin-bottom: 8px;
-      letter-spacing: -0.5px;
-    }
-    
-    .person-title {
-      font-size: 15px;
-      color: #888;
-      font-style: italic;
-      font-weight: 400;
-    }
-    
-    .install-section {
-      margin: 35px 0;
-    }
-    
-    .install-button {
-      background: linear-gradient(135deg, #000 0%, #1a1a1a 50%, #000 100%);
-      color: #fff;
-      border: none;
-      border-radius: 18px;
-      padding: 22px 36px;
-      font-size: 17px;
-      font-weight: 700;
-      cursor: pointer;
-      width: 100%;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 25px;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 
-        0 8px 20px rgba(0, 0, 0, 0.4),
-        0 0 0 1px rgba(255, 255, 255, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-      text-decoration: none;
-    }
-    
-    .install-button:hover {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 
-        0 15px 35px rgba(0, 0, 0, 0.6),
-        0 0 0 1px rgba(255, 255, 255, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-      background: linear-gradient(135deg, #1a1a1a 0%, #333 50%, #1a1a1a 100%);
-    }
-    
-    .install-button:active {
-      transform: translateY(-1px) scale(0.98);
-      transition: all 0.1s ease;
-    }
-    
-    .install-button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-      transition: left 0.6s ease;
-    }
-    
-    .install-button:hover::before {
-      left: 100%;
-    }
-    
-    .install-icon {
-      font-size: 20px;
-      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
-    }
-    
-    .qr-section {
-      background: rgba(255, 255, 255, 0.9);
-      border: 2px solid rgba(0, 0, 0, 0.08);
-      border-radius: 24px;
-      padding: 35px;
-      margin: 35px 0;
-      backdrop-filter: blur(10px);
-      box-shadow: 
-        inset 0 1px 0 rgba(255, 255, 255, 0.5),
-        0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-    
-    .qr-title {
-      font-size: 18px;
-      color: #333;
-      margin-bottom: 25px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-    
-    .qr-container {
-      margin: 0 auto 25px;
-      width: 220px;
       height: 220px;
-      border-radius: 20px;
-      overflow: hidden;
-      background: #fff;
-      border: 3px solid #e8e8e8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 
-        0 8px 25px rgba(0, 0, 0, 0.15),
-        inset 0 1px 0 rgba(255, 255, 255, 0.8);
-      position: relative;
-    }
-    
-    .qr-note {
-      font-size: 14px;
-      color: #666;
-      font-style: italic;
-      font-weight: 500;
-    }
-    
-    .loading-spinner {
-      width: 50px;
-      height: 50px;
-      border: 5px solid #f0f0f0;
-      border-top: 5px solid #000;
-      border-radius: 50%;
-      animation: spin 1.2s linear infinite;
-    }
-    
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    
-    .ios-instructions {
-      display: none;
-      background: #fff;
-      border-radius: 28px;
-      padding: 40px 32px;
-      text-align: left;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 92%;
-      max-width: 450px;
-      z-index: 1000;
-      box-shadow: 
-        0 30px 80px rgba(0, 0, 0, 0.4),
-        0 0 0 1px rgba(0, 0, 0, 0.1);
-      animation: popupSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      max-height: 90vh;
-      overflow-y: auto;
-    }
-    
-    @keyframes popupSlideIn {
-      from {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0.8);
-      }
-      to {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
-      }
-    }
-    
-    .popup-overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      z-index: 999;
-      backdrop-filter: blur(4px);
-      animation: fadeIn 0.3s ease-out;
-    }
-    
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    
-    .close-popup {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: #f5f5f5;
-      border: none;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      cursor: pointer;
-      font-size: 22px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-      color: #666;
-      font-weight: 300;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-    
-    .close-popup:hover {
-      background: #e8e8e8;
-      transform: scale(1.1);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    }
-    
-    .popup-header {
-      text-align: center;
-      margin-bottom: 30px;
-      padding-right: 30px;
-    }
-    
-    .popup-icon {
-      font-size: 56px;
-      margin-bottom: 16px;
-      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-    }
-    
-    .ios-instructions h3 {
-      font-size: 24px;
-      font-weight: 800;
-      margin-bottom: 12px;
-      color: #000;
-      letter-spacing: -0.5px;
-    }
-    
-    .popup-subtitle {
-      font-size: 16px;
-      color: #666;
-      margin-bottom: 30px;
-      font-weight: 500;
-    }
-    
-    .step {
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 25px;
-      font-size: 16px;
-      padding: 20px;
       background: #f8f9fa;
       border-radius: 16px;
-      transition: all 0.3s ease;
-      border: 1px solid rgba(0, 0, 0, 0.05);
-    }
-    
-    .step:hover {
-      background: #e9ecef;
-      transform: translateX(6px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-    
-    .step-number {
-      background: linear-gradient(135deg, #000 0%, #333 100%);
-      color: #fff;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      font-weight: 800;
-      margin-right: 18px;
-      flex-shrink: 0;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
-    }
-    
-    .step-text {
-      flex: 1;
-      line-height: 1.6;
-      padding-top: 1px;
-    }
-    
-    .step-text strong {
-      color: #000;
-      font-weight: 700;
-    }
-    
-    .share-icon {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 6px;
-      font-size: 16px;
-      background: #000;
-      color: white;
-      padding: 6px 8px;
-      border-radius: 8px;
-      font-weight: 600;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-    }
-    
-    .success-message {
-      display: none;
-      background: linear-gradient(135deg, #000 0%, #333 100%);
-      color: #fff;
-      padding: 22px;
-      border-radius: 18px;
-      margin: 25px 0;
-      font-weight: 700;
-      font-size: 16px;
-      box-shadow: 
-        0 8px 20px rgba(0, 0, 0, 0.4),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
-    
-    .fallback-message {
-      display: none;
-      background: rgba(0, 0, 0, 0.05);
-      border: 2px solid rgba(0, 0, 0, 0.1);
-      border-radius: 18px;
-      padding: 25px;
-      margin: 25px 0;
-      font-size: 15px;
-      color: #555;
-      font-weight: 500;
-      line-height: 1.5;
-    }
-    
-    .device-status {
-      margin: 20px 0;
-      padding: 15px;
-      border-radius: 12px;
-      font-size: 14px;
-      font-weight: 600;
+      color: #333;
       text-align: center;
-    }
-    
-    .device-status.supported {
-      background: rgba(0, 128, 0, 0.1);
-      color: #006400;
-      border: 1px solid rgba(0, 128, 0, 0.2);
-    }
-    
-    .device-status.ios {
-      background: rgba(0, 123, 255, 0.1);
-      color: #0056b3;
-      border: 1px solid rgba(0, 123, 255, 0.2);
-    }
-    
-    .device-status.installed {
-      background: rgba(0, 128, 0, 0.1);
-      color: #006400;
-      border: 1px solid rgba(0, 128, 0, 0.2);
-    }
-    
-    .footer {
-      margin-top: 50px;
-      font-size: 13px;
-      color: rgba(255, 255, 255, 0.6);
-      font-weight: 400;
-    }
-    
-    @media (max-width: 480px) {
-      .container {
-        padding: 35px 25px;
-        margin: 15px;
-        border-radius: 24px;
-      }
-      
-      .qr-container {
-        width: 200px;
-        height: 200px;
-      }
-      
-      .qr-section {
-        padding: 25px;
-      }
-      
-      .ios-instructions {
-        width: 95%;
-        padding: 30px 25px;
-        border-radius: 24px;
-      }
-      
-      .step {
-        padding: 16px;
-        font-size: 15px;
-      }
-      
-      .popup-header {
-        padding-right: 25px;
-      }
-      
-      .install-button {
-        padding: 20px 32px;
-        font-size: 16px;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <div class="header">
-      <div class="logo">ADS4U</div>
-      <div class="subtitle">Save this contact card to your phone</div>
-      <div class="person-name">Leslie Singer</div>
-      <div class="person-title">Business Professional</div>
+      padding: 20px;
+      font-size: 14px;
+      line-height: 1.4;
+    ">
+        <div style="font-size: 24px; margin-bottom: 12px;">📱</div>
+        <div style="font-weight: 600; margin-bottom: 8px;">Visit this page:</div>
+        <div style="
+        background: #fff;
+        padding: 8px 12px;
+        border-radius: 8px;
+        font-family: monospace;
+        font-size: 12px;
+        word-break: break-word;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      ">${this.qrUrl}</div>
     </div>
-
-    <div class="device-status" id="deviceStatus"></div>
-
-    <div class="install-section">
-      <button class="install-button" id="installBtn">
-        <span class="install-icon">📱</span>
-        <span id="installText">Add to Home Screen</span>
-      </button>
-    </div>
-
-    <div class="qr-section">
-      <div class="qr-title">
-        <span>📷</span>
-        <span>Or scan with your camera</span>
-      </div>
-      <div class="qr-container">
-        <div id="qrcode"></div>
-      </div>
-      <div class="qr-note">Point your camera at the QR code above</div>
-    </div>
-
-    <div class="popup-overlay" id="popupOverlay"></div>
-    
-    <div class="ios-instructions" id="iosInstructions">
-      <button class="close-popup" id="closePopup">×</button>
-      <div class="popup-header">
-        <div class="popup-icon">📱</div>
-        <h3>Add to Home Screen</h3>
-        <div class="popup-subtitle">Follow these steps to install Leslie's card</div>
-      </div>
-      <div class="step">
-        <div class="step-number">1</div>
-        <div class="step-text">
-          Tap the <strong>Share</strong> button <span class="share-icon">⬆️</span> at the bottom of Safari
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-number">2</div>
-        <div class="step-text">
-          Scroll down and tap <strong>"Add to Home Screen"</strong>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-number">3</div>
-        <div class="step-text">
-          Tap <strong>"Add"</strong> in the top-right corner
-        </div>
-      </div>
-    </div>
-    
-    <div class="success-message" id="successMessage">
-      <span>✅</span>
-      <span>Successfully added to your home screen!</span>
-    </div>
-    
-    <div class="fallback-message" id="fallbackMessage">
-      <strong>💡 Tip:</strong> You can bookmark this page or scan the QR code with your camera to access Leslie's contact information anytime.
-    </div>
-
-    <div class="footer">
-      &copy; 2025 ADS4U
-    </div>
-  </div>
-
-  <script src="https://unpkg.com/qrcode@1.5.3/build/qrcode.min.js"></script>
-  <script>
-    // Enhanced PWA Installation with better device detection
-    class PWAInstaller {
-      constructor() {
-        this.deferredPrompt = null;
-        this.installBtn = document.getElementById('installBtn');
-        this.installText = document.getElementById('installText');
-        this.iosInstructions = document.getElementById('iosInstructions');
-        this.popupOverlay = document.getElementById('popupOverlay');
-        this.closePopup = document.getElementById('closePopup');
-        this.successMessage = document.getElementById('successMessage');
-        this.fallbackMessage = document.getElementById('fallbackMessage');
-        this.deviceStatus = document.getElementById('deviceStatus');
-        
-        this.init();
-      }
-      
-      init() {
-        this.detectDevice();
-        this.setupEventListeners();
-        this.updateUI();
-      }
-      
-      detectDevice() {
-        const ua = navigator.userAgent.toLowerCase();
-        this.isIOS = /iphone|ipad|ipod/.test(ua);
-        this.isAndroid = /android/.test(ua);
-        this.isSafari = /safari/.test(ua) && !/chrome/.test(ua);
-        this.isChrome = /chrome/.test(ua);
-        this.isFirefox = /firefox/.test(ua);
-        this.isEdge = /edge|edg/.test(ua);
-        this.isStandalone = window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
-        
-        console.log('Device detection:', {
-          isIOS: this.isIOS,
-          isAndroid: this.isAndroid,
-          isSafari: this.isSafari,
-          isChrome: this.isChrome,
-          isStandalone: this.isStandalone
-        });
-      }
-      
-      setupEventListeners() {
-        // PWA install prompt
-        window.addEventListener('beforeinstallprompt', (e) => {
-          e.preventDefault();
-          this.deferredPrompt = e;
-          console.log('Install prompt available');
-          this.updateUI();
-        });
-        
-        // Install button click
-        this.installBtn.addEventListener('click', () => this.handleInstall());
-        
-        // Close popup listeners
-        if (this.closePopup) {
-          this.closePopup.addEventListener('click', () => this.hideIOSInstructions());
+  `;
+  this.qrElement.innerHTML = fallbackHTML;
+}
         }
-        if (this.popupOverlay) {
-          this.popupOverlay.addEventListener('click', () => this.hideIOSInstructions());
+
+        // Service Worker Registration
+        class ServiceWorkerManager {
+        constructor() {
+            this.register();
         }
         
-        // Keyboard shortcuts
-        document.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape') this.hideIOSInstructions();
-        });
-        
-        // App installed event
-        window.addEventListener('appinstalled', () => {
-          this.showSuccess();
-          console.log('PWA installed successfully');
-        });
-        
-        // Check for display mode changes
-        window.matchMedia('(display-mode: standalone)').addEventListener('change', (e) => {
-          if (e.matches) {
-            this.showSuccess();
-          }
-        });
-      }
-      
-      updateUI() {
-        let statusText = '';
-        let statusClass = '';
-        
-        if (this.isStandalone) {
-          statusText = '✅ Already installed as an app!';
-          statusClass = 'installed';
-          this.installBtn.style.display = 'none';
-          this.showSuccess();
-        } else if (this.deferredPrompt) {
-          statusText = '🚀 Ready to install - click the button below!';
-          statusClass = 'supported';
-          this.installText.textContent = 'Install App';
-        } else if (this.isIOS && this.isSafari) {
-          statusText = '📱 iOS Safari detected - use Share button instructions';
-          statusClass = 'ios';
-          this.installText.textContent = 'Show Install Instructions';
-        } else if (this.isIOS) {
-          statusText = '⚠️ Please open in Safari to install';
-          statusClass = 'ios';
-          this.installText.textContent = 'Open in Safari';
-        } else {
-          statusText = '💡 Bookmark this page for easy access';
-          statusClass = 'supported';
-          this.installText.textContent = 'Bookmark Page';
-        }
-        
-        this.deviceStatus.textContent = statusText;
-        this.deviceStatus.className = `device-status ${statusClass}`;
-      }
-      
-      async handleInstall() {
-        if (this.deferredPrompt) {
-          // Native PWA install
-          try {
-            this.deferredPrompt.prompt();
-            const { outcome } = await this.deferredPrompt.userChoice;
-            
-            if (outcome === 'accepted') {
-              this.showSuccess();
-            } else {
-              console.log('User dismissed install prompt');
+        async register() {
+            if ('serviceWorker' in navigator) {
+            try {
+                // Create a simple service worker inline
+                const swCode = `
+                const CACHE_NAME = 'leslie-card-v1';
+                const urlsToCache = [
+                    '/',
+                    '/manifest.json'
+                ];
+                
+                self.addEventListener('install', (event) => {
+                    event.waitUntil(
+                    caches.open(CACHE_NAME)
+                        .then((cache) => cache.addAll(urlsToCache))
+                    );
+                });
+                
+                self.addEventListener('fetch', (event) => {
+                    event.respondWith(
+                    caches.match(event.request)
+                        .then((response) => {
+                        return response || fetch(event.request);
+                        })
+                    );
+                });
+                `;
+                
+                const blob = new Blob([swCode], { type: 'application/javascript' });
+                const swUrl = URL.createObjectURL(blob);
+                
+                const registration = await navigator.serviceWorker.register(swUrl);
+                console.log('Service Worker registered successfully:', registration);
+            } catch (error) {
+                console.error('Service Worker registration failed:', error);
             }
-            
-            this.deferredPrompt = null;
-          } catch (error) {
-            console.error('Install prompt failed:', error);
-            this.showFallback();
-          }
-        } else if (this.isIOS && this.isSafari) {
-          // Show iOS instructions
-          this.showIOSInstructions();
-        } else if (this.isIOS && !this.isSafari) {
-          // Redirect to Safari
-          const safariUrl = `x-web-search://?${encodeURIComponent(window.location.href)}`;
-          window.location.href = safariUrl;
-          setTimeout(() => {
-            this.showFallback();
-          }, 2000);
-        } else {
-          // Fallback - bookmark or manual save
-          this.showFallback();
+            }
         }
-      }
-      
-      showIOSInstructions() {
-        this.popupOverlay.style.display = 'block';
-        this.iosInstructions.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-      }
-      
-      hideIOSInstructions() {
-        this.popupOverlay.style.display = 'none';
-        this.iosInstructions.style.display = 'none';
-        document.body.style.overflow = 'auto';
-      }
-      
-      showSuccess() {
-        this.successMessage.style.display = 'flex';
-        this.installBtn.style.display = 'none';
-        this.deviceStatus.textContent = '✅ Successfully installed!';
-        this.deviceStatus.className = 'device-status installed';
-        this.hideIOSInstructions();
-      }
-      
-      showFallback() {
-        this.fallbackMessage.style.display = 'block';
-        setTimeout(() => {
-          this.fallbackMessage.style.display = 'none';
-        }, 8000);
-      }
-    }
-
-    // QR Code Generator
-    class QRGenerator {
-      constructor() {
-        this.qrElement = document.getElementById('qrcode');
-        this.qrUrl = window.location.href || 'https://ads4u.store/leslie-business-card/';
-        this.init();
-      }
-      
-      init() {
-        this.showLoading();
-        this.generateQR();
-      }
-      
-      showLoading() {
-        this.qrElement.innerHTML = '<div class="loading-spinner"></div>';
-      }
-      
-      generateQR() {
-        const attemptGeneration = () => {
-          if (typeof QRCode !== 'undefined') {
-            this.qrElement.innerHTML = '';
-            const canvas = document.createElement('canvas');
-            this.qrElement.appendChild(canvas);
-            
-            QRCode.toCanvas(
-              canvas,
-              this.qrUrl,
-              { 
-                width: 220,
-                height: 220,
-                margin: 2,
-                color: { 
-                  dark: '#000000', 
-                  light: '#ffffff' 
-                },
-                errorCorrectionLevel: 'M'
-              },
-              (error) => {
-                if (error) {
-                  console.error('QR Code generation error:', error);
-                  this.showFallbackQR();
-                } else {
-                  console.log('QR Code generated successfully');
-                }
-              }
-            );
-          } else {
-            setTimeout(attemptGeneration, 200);
-          }
-        };
-        
-        attemptGeneration();
-      }
-      
-      showFallbackQR() {
-        const fallbackHTML = `
-          <div style="
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 220px;
-            background: #f8f9fa;
-            border-radius: 16px;
-            color: #333;
-            text-align: center;
-            padding: 20px;
-            font-size: 14px;
-            line-height: 1.4;
-          ">
-            <div style="font-size: 24px; margin-bottom: 12px;">📱</div>
-            <div style="font-weight: 600; margin-bottom: 8px;">Visit this page:</div>
-            <div style="
-              background: #fff;
-              padding: 8px 12px;
-              border-radius: 8px;
-              font-family: monospace;
-              font-size: 12px;
-              word-break: break-all;
-              box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            ">${this.qrUrl}</div>
-          </div>
-        `;
-        this.qrElement.innerHTML = fallbackHTML;
-      }
-    }
-
-    // Service Worker Registration
-    class ServiceWorkerManager {
-      constructor() {
-        this.register();
-      }
-      
-      async register() {
-        if ('serviceWorker' in navigator) {
-          try {
-            // Create a simple service worker inline
-            const swCode = `
-              const CACHE_NAME = 'leslie-card-v1';
-              const urlsToCache = [
-                '/',
-                '/manifest.json'
-              ];
-              
-              self.addEventListener('install', (event) => {
-                event.waitUntil(
-                  caches.open(CACHE_NAME)
-                    .then((cache) => cache.addAll(urlsToCache))
-                );
-              });
-              
-              self.addEventListener('fetch', (event) => {
-                event.respondWith(
-                  caches.match(event.request)
-                    .then((response) => {
-                      return response || fetch(event.request);
-                    })
-                );
-              });
-            `;
-            
-            const blob = new Blob([swCode], { type: 'application/javascript' });
-            const swUrl = URL.createObjectURL(blob);
-            
-            const registration = await navigator.serviceWorker.register(swUrl);
-            console.log('Service Worker registered successfully:', registration);
-          } catch (error) {
-            console.error('Service Worker registration failed:', error);
-          }
         }
-      }
-    }
 
-    // Initialize everything when DOM is loaded
-    document.addEventListener('DOMContentLoaded', function() {
-      new PWAInstaller();
-      new QRGenerator();
-      new ServiceWorkerManager();
-    });
-  </script>
-</body>
-</html>
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+        new PWAInstaller();
+        new QRGenerator();
+        new ServiceWorkerManager();
+        });
+    </script>
+    </body>
+    </html>
