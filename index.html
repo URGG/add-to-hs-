@@ -963,91 +963,36 @@
         }
 
         // QR Code Generator
-        class QRGenerator {
-        constructor() {
-            this.qrElement = document.getElementById('qrcode');
-            this.qrUrl = window.location.href || 'https://ads4u.store/leslie-business-card/';
-            this.init();
-        }
         
-        init() {
-            this.showLoading();
-            this.generateQR();
-        }
-        
-        showLoading() {
-            this.qrElement.innerHTML = '<div class="loading-spinner"></div>';
-        }
-        
-        generateQR() {
-            const attemptGeneration = () => {
+        document.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.getElementById('qrcodeCanvas');
+            const url = window.location.href;
+
             if (typeof QRCode !== 'undefined') {
-                this.qrElement.innerHTML = '';
-                const canvas = document.createElement('canvas');
-                this.qrElement.appendChild(canvas);
-                
-                QRCode.toCanvas(
-                canvas,
-                this.qrUrl,
-                { 
-                    width: 220,
-                    height: 220,
-                    margin: 2,
-                    color: { 
-                    dark: '#000000', 
-                    light: '#ffffff' 
-                    },
-                    errorCorrectionLevel: 'M'
+            QRCode.toCanvas(canvas, url, {
+                width: 220,
+                margin: 2,
+                color: {
+                dark: '#000000',
+                light: '#ffffff'
                 },
-                (error) => {
-                    if (error) {
-                    console.error('QR Code generation error:', error);
-                    this.showFallbackQR();
-                    } else {
-                    console.log('QR Code generated successfully');
-                    }
+                errorCorrectionLevel: 'M'
+            }, (error) => {
+                if (error) {
+                console.error('QR Code generation error:', error);
+                canvas.outerHTML = `<div style="text-align: center; color: #333;">
+                    <strong>Could not generate QR Code.</strong><br />
+                    Please visit: <br />${url}
+                </div>`;
+                } else {
+                console.log('QR Code successfully generated.');
                 }
-                );
+            });
             } else {
-                setTimeout(attemptGeneration, 200);
+            console.error('QRCode library is not available');
             }
-            };
-            
-            attemptGeneration();
-        }
-        
- showFallbackQR() {
-    const fallbackHTML = `
-    <div style="
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 220px;
-      background: #f8f9fa;
-      border-radius: 16px;
-      color: #333;
-      text-align: center;
-      padding: 20px;
-      font-size: 14px;
-      line-height: 1.4;
-    ">
-        <div style="font-size: 24px; margin-bottom: 12px;">📱</div>
-        <div style="font-weight: 600; margin-bottom: 8px;">Visit this page:</div>
-        <div style="
-        background: #fff;
-        padding: 8px 12px;
-        border-radius: 8px;
-        font-family: monospace;
-        font-size: 12px;
-        word-break: break-word;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      ">${this.qrUrl}</div>
-    </div>
-  `;
-  this.qrElement.innerHTML = fallbackHTML;
-}
-        }
+        });
+
 
         // Service Worker Registration
         class ServiceWorkerManager {
