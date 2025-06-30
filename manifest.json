@@ -1,28 +1,28 @@
 {
-    "name": "Leslie Singer - Business Card",
-    "short_name": "Leslie Card",
-    "description": "Digital business card for Leslie Singer",
-    "start_url": "https://ads4u.store/leslie-business-card/",
-    "display": "standalone",
-    "background_color": "#ffffff",
-    "theme_color": "#000000",
-    "orientation": "portrait-primary",
-    "icons": [
-      {
-        "src": "leslie-192.png",
-        "sizes": "192x192",
-        "type": "image/png",
-        "purpose": "maskable any"
-      },
-      {
-        "src": "leslie-512.png",
-        "sizes": "512x512",
-        "type": "image/png",
-        "purpose": "maskable any"
-      }
-    ],
-    "categories": ["business", "productivity"],
-    "lang": "en",
-    "scope": "/",
-    "prefer_related_applications": false
-  }
+  "name": "Leslie Singer - Business Card",
+  "short_name": "Leslie Card",
+  "description": "Digital business card for Leslie Singer",
+  "start_url": "/leslie-business-card/",
+  "scope": "/leslie-business-card/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "leslie-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "leslie-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "categories": ["business", "productivity"],
+  "lang": "en",
+  "prefer_related_applications": false
+}
