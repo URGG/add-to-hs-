@@ -522,63 +522,272 @@
         <div class="qr-note">Point your camera at the QR code above</div>
         </div>
 
-        <div class="popup-overlay" id="popupOverlay"></div>
+        <!-- HTML for the instruction sections -->
+<div class="popup-overlay" id="popupOverlay"></div>
 
-            <div class="ios-instructions" id="iosInstructions">
-            <button class="close-popup" id="closePopup">×</button>
-
-            <div class="popup-header">
-                <div class="popup-icon">📱</div>
-                <h3 class="popup-title">Add to Home Screen</h3>
-                <p class="popup-subtitle">Install Leslie's card on your iPhone in just a few taps</p>
-            </div>
-
-            <div class="ios-steps">
-                <div class="ios-step">
-                <div class="step-badge">1</div>
-                <div class="step-instruction">
-                    Tap the <strong>Share</strong> button <span class="share-icon">⬆️</span> at the bottom of Safari.
-                </div>
-                </div>
-                <div class="ios-step">
-                <div class="step-badge">2</div>
-                <div class="step-instruction">
-                    Scroll down and select <strong>"Add to Home Screen"</strong>.
-                </div>
-                </div>
-                <div class="ios-step">
-                <div class="step-badge">3</div>
-                <div class="step-instruction">
-                    Tap <strong>"Add"</strong> in the top-right corner to finish.
-                </div>
-                </div>
-            </div>
-            </div>
-
-        <div class="success-message" id="successMessage">
-        <span>✅</span>
-        <span>Successfully added to your home screen!</span>
-        </div>
-
-        
-        
-
-
-    <div class="success-message" id="successMessage">
-         <span>✅</span>
-        <span>Successfully added to your home screen!</span>
+<div class="ios-instructions" id="iosInstructions">
+    <button class="close-popup" id="closePopup">×</button>
+    
+    <div class="popup-header">
+        <div class="popup-icon">📱</div>
+        <h3>Add to Home Screen</h3>
+        <div class="popup-subtitle">Follow these steps to install Leslie's card</div>
     </div>
-        
-        <div class="fallback-message" id="fallbackMessage">
-        <strong>💡 Tip:</strong> You can bookmark this page or scan the QR code with your camera to access Leslie's contact information anytime.
+    
+    <div class="steps-container">
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-text">
+                Tap the <strong>Share</strong> button <span class="share-icon">⬆️</span> at the bottom of Safari
+            </div>
         </div>
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-text">
+                Scroll down and tap <strong>"Add to Home Screen"</strong>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-text">
+                Tap <strong>"Add"</strong> in the top-right corner
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="success-message" id="successMessage">
+    <span>✅</span>
+    <span>Successfully added to your home screen!</span>
+</div>
+
+<div class="fallback-message" id="fallbackMessage">
+    <strong>💡 Tip:</strong> You can bookmark this page or scan the QR code with your camera to access Leslie's contact information anytime.
+</div>
+
+<style>
+/* Popup Overlay */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    display: none;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+.popup-overlay.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* iOS Instructions Popup */
+.ios-instructions {
+    background: white;
+    border-radius: 20px;
+    max-width: 400px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    animation: slideUp 0.3s ease;
+}
+
+.close-popup {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: #f3f4f6;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 18px;
+    font-weight: bold;
+    color: #6b7280;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.close-popup:hover {
+    background: #e5e7eb;
+    color: #374151;
+}
+
+.popup-header {
+    text-align: center;
+    padding: 30px 20px 20px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.popup-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.popup-header h3 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 8px;
+}
+
+.popup-subtitle {
+    color: #6b7280;
+    font-size: 16px;
+}
+
+.steps-container {
+    padding: 20px;
+}
+
+.step {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 20px 0;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.step:last-child {
+    border-bottom: none;
+}
+
+.step-number {
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.step-text {
+    flex: 1;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #374151;
+    padding-top: 4px;
+}
+
+.step-text strong {
+    color: #111827;
+    font-weight: 600;
+}
+
+.share-icon {
+    background: #e5e7eb;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Success Message */
+.success-message {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #10b981;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 12px;
+    display: none;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    z-index: 1001;
+    animation: slideDown 0.3s ease;
+}
+
+.success-message.show {
+    display: flex;
+}
+
+/* Fallback Message */
+.fallback-message {
+    background: #fef3c7;
+    border: 1px solid #f59e0b;
+    color: #92400e;
+    padding: 15px;
+    border-radius: 12px;
+    margin-top: 20px;
+    font-size: 14px;
+    line-height: 1.5;
+    display: none;
+}
+
+.fallback-message.show {
+    display: block;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { 
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from { 
+        opacity: 0;
+        transform: translate(-50%, -20px);
+    }
+    to { 
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .ios-instructions {
+        margin: 10px;
+        border-radius: 15px;
+    }
+    
+    .popup-header {
+        padding: 25px 15px 15px;
+    }
+    
+    .steps-container {
+        padding: 15px;
+    }
+}
+</style>
 
         <div class="footer">
         &copy; 2025 ADS4U
         </div>
     </div>
     <!-- Load QRCode Library -->
-    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    
     <script>
         // Enhanced PWA Installation with better device detection
         class PWAInstaller {
