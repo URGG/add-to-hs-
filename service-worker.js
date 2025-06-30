@@ -5,7 +5,7 @@ const urlsToCache = [
   '/manifest.json',
   '/leslie-192.png',
   '/leslie-512.png',
-  'https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.3/qrcode.min.js'
+  
 ];
 
 self.addEventListener('install', event => {
