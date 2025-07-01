@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#000000" />
     <link rel="manifest" href="/manifest.json" />
     <link rel="apple-touch-icon" href="/leslie-192.png" />
-    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
@@ -790,6 +790,7 @@
     
     <script>
         // Enhanced PWA Installation with better device detection
+        // Enhanced PWA Installation with better device detection
         class PWAInstaller {
         constructor() {
             this.deferredPrompt = null;
@@ -801,78 +802,56 @@
             this.successMessage = document.getElementById('successMessage');
             this.fallbackMessage = document.getElementById('fallbackMessage');
             this.deviceStatus = document.getElementById('deviceStatus');
-            
             this.init();
         }
-        
+
         init() {
             this.detectDevice();
             this.setupEventListeners();
             this.updateUI();
         }
-        
+
         detectDevice() {
             const ua = navigator.userAgent.toLowerCase();
             this.isIOS = /iphone|ipad|ipod/.test(ua);
             this.isAndroid = /android/.test(ua);
             this.isSafari = /safari/.test(ua) && !/chrome/.test(ua);
-            this.isChrome = /chrome/.test(ua);
-            this.isFirefox = /firefox/.test(ua);
-            this.isEdge = /edge|edg/.test(ua);
             this.isStandalone = window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
-            
             console.log('Device detection:', {
             isIOS: this.isIOS,
             isAndroid: this.isAndroid,
             isSafari: this.isSafari,
-            isChrome: this.isChrome,
             isStandalone: this.isStandalone
             });
         }
-        
+
         setupEventListeners() {
-            // PWA install prompt
             window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             this.deferredPrompt = e;
-            console.log('Install prompt available');
             this.updateUI();
             });
-            
-            // Install button click
-            this.installBtn.addEventListener('click', () => this.handleInstall());
-            
-            // Close popup listeners
-            if (this.closePopup) {
-            this.closePopup.addEventListener('click', () => this.hideIOSInstructions());
-            }
-            if (this.popupOverlay) {
-            this.popupOverlay.addEventListener('click', () => this.hideIOSInstructions());
-            }
-            
-            // Keyboard shortcuts
+
+            this.installBtn?.addEventListener('click', () => this.handleInstall());
+            this.closePopup?.addEventListener('click', () => this.hideIOSInstructions());
+            this.popupOverlay?.addEventListener('click', () => this.hideIOSInstructions());
+
             document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') this.hideIOSInstructions();
             });
-            
-            // App installed event
+
             window.addEventListener('appinstalled', () => {
             this.showSuccess();
-            console.log('PWA installed successfully');
             });
-            
-            // Check for display mode changes
+
             window.matchMedia('(display-mode: standalone)').addEventListener('change', (e) => {
-            if (e.matches) {
-                this.showSuccess();
-            }
+            if (e.matches) this.showSuccess();
             });
         }
-        
+
         updateUI() {
-            let statusText = '';
-            let statusClass = '';
-            
+            let statusText = '', statusClass = '';
+
             if (this.isStandalone) {
             statusText = '✅ Already installed as an app!';
             statusClass = 'installed';
@@ -895,57 +874,45 @@
             statusClass = 'supported';
             this.installText.textContent = 'Bookmark Page';
             }
-            
+
             this.deviceStatus.textContent = statusText;
             this.deviceStatus.className = `device-status ${statusClass}`;
         }
-        
+
         async handleInstall() {
             if (this.deferredPrompt) {
-            // Native PWA install
             try {
                 this.deferredPrompt.prompt();
                 const { outcome } = await this.deferredPrompt.userChoice;
-                
-                if (outcome === 'accepted') {
-                this.showSuccess();
-                } else {
-                console.log('User dismissed install prompt');
-                }
-                
+                if (outcome === 'accepted') this.showSuccess();
                 this.deferredPrompt = null;
             } catch (error) {
                 console.error('Install prompt failed:', error);
                 this.showFallback();
             }
             } else if (this.isIOS && this.isSafari) {
-            // Show iOS instructions
             this.showIOSInstructions();
-            } else if (this.isIOS && !this.isSafari) {
-            // Redirect to Safari
-            const safariUrl = `x-web-search://?${encodeURIComponent(window.location.href)}`;
+            } else if (this.isIOS) {
+            const safariUrl = `https://ads4u.store/leslie-business-card/`;
             window.location.href = safariUrl;
-            setTimeout(() => {
-                this.showFallback();
-            }, 2000);
+            setTimeout(() => this.showFallback(), 2000);
             } else {
-            // Fallback - bookmark or manual save
             this.showFallback();
             }
         }
-        
+
         showIOSInstructions() {
             this.popupOverlay.style.display = 'block';
             this.iosInstructions.style.display = 'block';
             document.body.style.overflow = 'hidden';
         }
-        
+
         hideIOSInstructions() {
             this.popupOverlay.style.display = 'none';
             this.iosInstructions.style.display = 'none';
             document.body.style.overflow = 'auto';
         }
-        
+
         showSuccess() {
             this.successMessage.style.display = 'flex';
             this.installBtn.style.display = 'none';
@@ -953,117 +920,54 @@
             this.deviceStatus.className = 'device-status installed';
             this.hideIOSInstructions();
         }
-        
+
         showFallback() {
             this.fallbackMessage.style.display = 'block';
             setTimeout(() => {
             this.fallbackMessage.style.display = 'none';
             }, 8000);
         }
-        }
+    }
 
         
-        
-        // QR Code Generator
-        
+
         class QRGenerator {
             constructor() {
-            this.qrElement = document.getElementById('qrcode');
-            this.qrUrl = 'https://ads4u.store/leslie-business-card/';
-            this.generateQR();
+                this.qrElement = document.getElementById('qrcode');
+                this.qrUrl = 'https://ads4u.store/leslie-business-card/';
+                this.generateQR();
             }
 
             generateQR() {
-            if (typeof QRCode !== 'undefined') {
-                this.qrElement.innerHTML = ''; // clear anything inside
-                const canvas = document.createElement('canvas');
-                this.qrElement.appendChild(canvas);
-
-                QRCode.toCanvas(canvas, this.qrUrl, {
-                width: 220,
-                margin: 2,
-                color: {
-                    dark: '#000000',
-                    light: '#ffffff'
-                },
-                errorCorrectionLevel: 'M'
-                }, (error) => {
-                if (error) {
-                    console.error('QR Code generation error:', error);
-                    this.qrElement.innerHTML = `
-                    <div style="text-align:center;color:#333;">
-                        <strong>QR Code could not load.</strong><br />
-                        Please visit: <br />
-                        <a href="${this.qrUrl}" style="color:#000;">${this.qrUrl}</a>
-                    </div>`;
-                } else {
-                    console.log('QR Code generated successfully.');
-                }
+                if (typeof QRCode !== 'undefined') {
+                this.qrElement.innerHTML = '';
+                new QRCode(this.qrElement, {
+                    text: this.qrUrl,
+                    width: 220,
+                    height: 220,
+                    colorDark: "#000000",
+                    colorLight: "#ffffff",
+                    correctLevel: QRCode.CorrectLevel.M
                 });
-            } else {
+                } else {
                 console.error('QRCode library not available');
-            }
+                }
             }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            new QRGenerator();
-        });
-
-
-
-        // Service Worker Registration
-        class ServiceWorkerManager {
-        constructor() {
-            this.register();
-        }
-        
-        async register() {
-            if ('serviceWorker' in navigator) {
-            try {
-                // Create a simple service worker inline
-                const swCode = `
-                const CACHE_NAME = 'leslie-card-v1';
-                const urlsToCache = [
-                    '/',
-                    '/manifest.json'
-                ];
-                
-                self.addEventListener('install', (event) => {
-                    event.waitUntil(
-                    caches.open(CACHE_NAME)
-                        .then((cache) => cache.addAll(urlsToCache))
-                    );
-                });
-                
-                self.addEventListener('fetch', (event) => {
-                    event.respondWith(
-                    caches.match(event.request)
-                        .then((response) => {
-                        return response || fetch(event.request);
-                        })
-                    );
-                });
-                `;
-                
-                const blob = new Blob([swCode], { type: 'application/javascript' });
-                const swUrl = URL.createObjectURL(blob);
-                
-                const registration = await navigator.serviceWorker.register(swUrl);
-                console.log('Service Worker registered successfully:', registration);
-            } catch (error) {
-                console.error('Service Worker registration failed:', error);
-            }
-            }
-        }
-        }
-
-        // Initialize everything when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
         new PWAInstaller();
-        
-        new ServiceWorkerManager();
-        });
+        new QRGenerator();
+
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/service-worker.js')
+            .then(reg => console.log('✅ Service Worker registered:', reg))
+            .catch(err => console.error('❌ SW registration failed:', err));
+         });
+        }
+    });
+
  </script>
  </body>
   </html>
