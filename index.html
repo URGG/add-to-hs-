@@ -512,15 +512,15 @@
         </div>
 
         <div class="qr-section">
-        <div class="qr-title">
-            <span>📷</span>
-            <span>Or scan with your camera</span>
-        </div>
-        <div class="qr-container">
-            <div id="qrcode"></div>
-        </div>
-        <div class="qr-note">Point your camera at the QR code above</div>
-        </div>
+            <div class="qr-title">
+              <span>📷</span>
+              <span>Or scan with your camera</span>
+            </div>
+            <div class="qr-container">
+              <div id="qrcode"></div>
+            </div>
+            <div class="qr-note">Point your camera at the QR code above</div>
+          </div>
 
         <!-- HTML for the instruction sections -->
 <div class="popup-overlay" id="popupOverlay"></div>
@@ -962,36 +962,54 @@
         }
         }
 
+        
+        
         // QR Code Generator
         
-        document.addEventListener('DOMContentLoaded', () => {
-            const canvas = document.getElementById('qrcodeCanvas');
-            const url = window.location.href;
+        class QRGenerator {
+            constructor() {
+            this.qrElement = document.getElementById('qrcode');
+            this.qrUrl = 'https://ads4u.store/leslie-business-card/';
+            this.generateQR();
+            }
 
+            generateQR() {
             if (typeof QRCode !== 'undefined') {
-            QRCode.toCanvas(canvas, url, {
+                this.qrElement.innerHTML = ''; // clear anything inside
+                const canvas = document.createElement('canvas');
+                this.qrElement.appendChild(canvas);
+
+                QRCode.toCanvas(canvas, this.qrUrl, {
                 width: 220,
                 margin: 2,
                 color: {
-                dark: '#000000',
-                light: '#ffffff'
+                    dark: '#000000',
+                    light: '#ffffff'
                 },
                 errorCorrectionLevel: 'M'
-            }, (error) => {
+                }, (error) => {
                 if (error) {
-                console.error('QR Code generation error:', error);
-                canvas.outerHTML = `<div style="text-align: center; color: #333;">
-                    <strong>Could not generate QR Code.</strong><br />
-                    Please visit: <br />${url}
-                </div>`;
+                    console.error('QR Code generation error:', error);
+                    this.qrElement.innerHTML = `
+                    <div style="text-align:center;color:#333;">
+                        <strong>QR Code could not load.</strong><br />
+                        Please visit: <br />
+                        <a href="${this.qrUrl}" style="color:#000;">${this.qrUrl}</a>
+                    </div>`;
                 } else {
-                console.log('QR Code successfully generated.');
+                    console.log('QR Code generated successfully.');
                 }
-            });
+                });
             } else {
-            console.error('QRCode library is not available');
+                console.error('QRCode library not available');
             }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            new QRGenerator();
         });
+
 
 
         // Service Worker Registration
@@ -1043,9 +1061,9 @@
         // Initialize everything when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
         new PWAInstaller();
-        new QRGenerator();
+        
         new ServiceWorkerManager();
         });
-    </script>
-    </body>
-    </html>
+ </script>
+ </body>
+  </html>

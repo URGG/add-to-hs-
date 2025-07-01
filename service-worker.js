@@ -1,7 +1,6 @@
 const CACHE_NAME = 'leslie-card-v1';
 const urlsToCache = [
   '/index.html',
-  '/leslie-business-card/index.html',
   '/manifest.json',
   '/leslie-192.png',
   '/leslie-512.png',
