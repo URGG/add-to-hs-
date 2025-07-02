@@ -295,84 +295,90 @@
             font-size: 16px;
           }
         }
-      </style>
-    </head>
-    <body>
-    <div class="container">
-        <div class="header">
-        <div class="logo">ADS4U</div>
-        <div class="subtitle">Save this contact card to your phone</div>
-        <div class="person-name">Leslie Singer</div>
-        <div class="person-title">Realtor</div>
-        </div>
+</style>
 
-        <div class="device-status" id="deviceStatus"></div>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo">ADS4U</div>
+      <div class="subtitle">Save this contact card to your phone</div>
+      <div class="person-name">Leslie Singer</div>
+      <div class="person-title">Realtor</div>
+    </div>
 
-        <div class="install-section">
-        <button class="install-button" id="installBtn">
-            <span class="install-icon">📱</span>
-            <span id="installText">Add to Home Screen</span>
-        </button>
-        </div>
+    <div class="device-status" id="deviceStatus"></div>
 
-        <div class="qr-section">
-            <div class="qr-title">
-              <span>📷</span>
-              <span>Or scan with your camera</span>
-            </div>
-            <div class="qr-container">
-              <div id="qrcode"></div>
-            </div>
-            <div class="qr-note">Point your camera at the QR code above</div>
-        </div>
-          
-          <!-- 🔽 Add this right after -->
-        <div class="back-button-wrapper">
-            <a href="https://ads4u.store/leslie-business-card/" class="back-button">
-              ← Back to Main Page
-            </a>
-        </div>
-        <!-- HTML for the instruction sections -->
-<div class="popup-overlay" id="popupOverlay"></div>
+    <div class="install-section">
+      <button class="install-button" id="installBtn">
+        <span class="install-icon">📱</span>
+        <span id="installText">Add to Home Screen</span>
+      </button>
+    </div>
 
-<button class="close-popup" id="closePopup">×</button>
-    
-<div class="popup-header">
-    <div class="popup-icon">📱</div>
-    <h3>Add to Home Screen</h3>
-    <div class="popup-subtitle">Follow these steps to install Leslie's card</div>
-</div>
+    <div class="qr-section">
+      <div class="qr-title">
+        <span>📷</span>
+        <span>Or scan with your camera</span>
+      </div>
+      <div class="qr-container">
+        <div id="qrcode"></div>
+      </div>
+      <div class="qr-note">Point your camera at the QR code above</div>
+    </div>
 
-<div class="steps-container">
-    <div class="step">
+    <div class="back-button-wrapper">
+      <a href="https://ads4u.store/leslie-business-card/" class="back-button">
+        ← Back to Main Page
+      </a>
+    </div>
+  </div>
+
+  <!-- Popup overlay -->
+  <div class="popup-overlay" id="popupOverlay"></div>
+
+  <!-- iOS Instructions Modal -->
+  <div class="ios-instructions" id="iosInstructions">
+    <button class="close-popup" id="closePopup">×</button>
+
+    <div class="popup-header">
+      <div class="popup-icon">📱</div>
+      <h3>Add to Home Screen</h3>
+      <div class="popup-subtitle">Follow these steps to install Leslie's card</div>
+    </div>
+
+    <div class="steps-container">
+      <div class="step">
         <div class="step-number">1</div>
         <div class="step-text">
-            Tap the <strong>Share</strong> button <span class="share-icon">⬆️</span> at the bottom of Safari
+          Tap the <strong>Share</strong> button <span class="share-icon">⬆️</span> at the bottom of Safari
         </div>
-    </div>
-    <div class="step">
+      </div>
+      <div class="step">
         <div class="step-number">2</div>
         <div class="step-text">
-            Scroll down and tap <strong>"Add to Home Screen"</strong>
+          Scroll down and tap <strong>"Add to Home Screen"</strong>
         </div>
-    </div>
-    <div class="step">
+      </div>
+      <div class="step">
         <div class="step-number">3</div>
         <div class="step-text">
-            Tap <strong>"Add"</strong> in the top-right corner
+          Tap <strong>"Add"</strong> in the top-right corner
         </div>
+      </div>
     </div>
-</div>
-</div>
+  </div>
 
-<div class="success-message" id="successMessage">
-<span>✅</span>
-<span>Successfully added to your home screen!</span>
-</div>
+  <!-- Success message -->
+  <div class="success-message" id="successMessage">
+    <span>✅</span>
+    <span>Successfully added to your home screen!</span>
+  </div>
 
-<div class="fallback-message" id="fallbackMessage">
-<strong>💡 Tip:</strong> You can bookmark this page or scan the QR code with your camera to access Leslie's contact information anytime.
-</div>
+  <!-- Fallback message -->
+  <div class="fallback-message" id="fallbackMessage">
+    <strong>💡 Tip:</strong> You can bookmark this page or scan the QR code with your camera to access Leslie's contact information anytime.
+  </div>
 
 
 
