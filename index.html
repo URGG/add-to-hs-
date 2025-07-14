@@ -1,302 +1,518 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Add Leslie's Card</title>
-    <meta name="theme-color" content="#000000" />
-    <link rel="manifest" href="/manifest.json" />
-    <link rel="apple-touch-icon" href="/leslie-192.png" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-    <style>
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-        }
-      
-        body {
-          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-          background: #000;
-          color: #fff;
-          min-height: 100vh;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          padding: 20px;
-          line-height: 1.6;
-          position: relative;
-          overflow-x: hidden;
-        }
-      
-        body::before {
-          content: '';
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: radial-gradient(ellipse at center, #1a1a1a 0%, #000 70%);
-          z-index: -1;
-        }
-      
-        .container {
-          max-width: 420px;
-          width: 100%;
-          text-align: center;
-          background: rgba(255, 255, 255, 0.98);
-          backdrop-filter: blur(20px);
-          border-radius: 28px;
-          padding: 45px 35px;
-          box-shadow: 
-            0 25px 50px rgba(0, 0, 0, 0.5),
-            0 0 0 1px rgba(255, 255, 255, 0.1),
-            inset 0 1px 0 rgba(255, 255, 255, 0.2);
-          border: 1px solid rgba(255, 255, 255, 0.15);
-          position: relative;
-          animation: slideInUp 0.8s ease-out;
-        }
-      
-        @keyframes slideInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      
-        .header {
-          margin-bottom: 45px;
-        }
-      
-        .logo {
-          font-size: 38px;
-          font-weight: 900;
-          margin-bottom: 12px;
-          letter-spacing: -1px;
-          background: linear-gradient(135deg, #000 0%, #333 50%, #000 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-      
-        .subtitle {
-          font-size: 16px;
-          color: #666;
-          margin-bottom: 20px;
-          font-weight: 500;
-        }
-      
-        .person-name {
-          font-size: 28px;
-          font-weight: 800;
-          color: #000;
-          margin-bottom: 8px;
-          letter-spacing: -0.5px;
-        }
-      
-        .person-title {
-          font-size: 15px;
-          color: #888;
-          font-style: italic;
-          font-weight: 400;
-        }
-      
-        .install-section {
-          margin: 35px 0;
-        }
-      
-        .install-button {
-          background: linear-gradient(135deg, #000 0%, #1a1a1a 50%, #000 100%);
-          color: #fff;
-          border: none;
-          border-radius: 18px;
-          padding: 22px 36px;
-          font-size: 17px;
-          font-weight: 700;
-          cursor: pointer;
-          width: 100%;
-          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 12px;
-          margin-bottom: 25px;
-          position: relative;
-          overflow: hidden;
-          box-shadow: 
-            0 8px 20px rgba(0, 0, 0, 0.4),
-            0 0 0 1px rgba(255, 255, 255, 0.1),
-            inset 0 1px 0 rgba(255, 255, 255, 0.1);
-          text-decoration: none;
-        }
-      
-        .install-button:hover {
-          transform: translateY(-3px) scale(1.02);
-          box-shadow: 
-            0 15px 35px rgba(0, 0, 0, 0.6),
-            0 0 0 1px rgba(255, 255, 255, 0.2),
-            inset 0 1px 0 rgba(255, 255, 255, 0.2);
-          background: linear-gradient(135deg, #1a1a1a 0%, #333 50%, #1a1a1a 100%);
-        }
-      
-        .install-button:active {
-          transform: translateY(-1px) scale(0.98);
-          transition: all 0.1s ease;
-        }
-      
-        .install-button::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: -100%;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-          transition: left 0.6s ease;
-        }
-      
-        .install-button:hover::before {
-          left: 100%;
-        }
-      
-        .install-icon {
-          font-size: 20px;
-          filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
-        }
-      
-        .qr-section {
-          background: rgba(255, 255, 255, 0.9);
-          border: 2px solid rgba(0, 0, 0, 0.08);
-          border-radius: 24px;
-          padding: 35px;
-          margin: 35px 0;
-          backdrop-filter: blur(10px);
-          box-shadow: 
-            inset 0 1px 0 rgba(255, 255, 255, 0.5),
-            0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-      
-        .qr-title {
-          font-size: 18px;
-          color: #333;
-          margin-bottom: 25px;
-          font-weight: 700;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 8px;
-        }
-      
-        .qr-container {
-          margin: 0 auto 25px;
-          width: 220px;
-          height: 220px;
-          border-radius: 20px;
-          overflow: hidden;
-          background: #fff;
-          border: 3px solid #e8e8e8;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          box-shadow: 
-            0 8px 25px rgba(0, 0, 0, 0.15),
-            inset 0 1px 0 rgba(255, 255, 255, 0.8);
-          position: relative;
-        }
-      
-        .qr-note {
-          font-size: 14px;
-          color: #666;
-          font-style: italic;
-          font-weight: 500;
-        }
-      
-        .device-status {
-          margin: 20px 0;
-          padding: 15px;
-          border-radius: 12px;
-          font-size: 14px;
-          font-weight: 600;
-          text-align: center;
-        }
-      
-        .device-status.supported {
-          background: rgba(0, 128, 0, 0.1);
-          color: #006400;
-          border: 1px solid rgba(0, 128, 0, 0.2);
-        }
-      
-        .device-status.ios {
-          background: rgba(0, 123, 255, 0.1);
-          color: #0056b3;
-          border: 1px solid rgba(0, 123, 255, 0.2);
-        }
-      
-        .device-status.installed {
-          background: rgba(0, 128, 0, 0.1);
-          color: #006400;
-          border: 1px solid rgba(0, 128, 0, 0.2);
-        }
-      
-        .footer {
-          margin-top: 50px;
-          font-size: 13px;
-          color: rgba(255, 255, 255, 0.6);
-          font-weight: 400;
-        }
-      
-        .back-button-wrapper {
-          margin-top: 25px;
-          text-align: center;
-        }
-      
-        .back-button {
-          display: inline-block;
-          background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
-          color: #fff;
-          padding: 14px 28px;
-          border-radius: 12px;
-          font-weight: 600;
-          font-size: 15px;
-          text-decoration: none;
-          transition: all 0.3s ease;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        }
-      
-        .back-button:hover {
-          background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
-          transform: translateY(-2px);
-        }
-      
-        @media (max-width: 480px) {
-          .container {
-            padding: 35px 25px;
-            margin: 15px;
-            border-radius: 24px;
-          }
-      
-          .qr-container {
-            width: 200px;
-            height: 200px;
-          }
-      
-          .qr-section {
-            padding: 25px;
-          }
-      
-          .install-button {
-            padding: 20px 32px;
-            font-size: 16px;
-          }
-        }
-</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Add Leslie's Card</title>
+<meta name="theme-color" content="#000000" />
+<link rel="manifest" href="/manifest.json" />
+<link rel="apple-touch-icon" href="/leslie-192.png" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: #000;
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  line-height: 1.6;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, #1a1a1a 0%, #000 70%);
+  z-index: -1;
+}
+
+.container {
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(20px);
+  border-radius: 28px;
+  padding: 45px 35px;
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  position: relative;
+  animation: slideInUp 0.8s ease-out;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.header {
+  margin-bottom: 45px;
+}
+
+.logo {
+  font-size: 38px;
+  font-weight: 900;
+  margin-bottom: 12px;
+  letter-spacing: -1px;
+  background: linear-gradient(135deg, #000 0%, #333 50%, #000 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.subtitle {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.person-name {
+  font-size: 28px;
+  font-weight: 800;
+  color: #000;
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+.person-title {
+  font-size: 15px;
+  color: #888;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.install-section {
+  margin: 35px 0;
+}
+
+.install-button {
+  background: linear-gradient(135deg, #000 0%, #1a1a1a 50%, #000 100%);
+  color: #fff;
+  border: none;
+  border-radius: 18px;
+  padding: 22px 36px;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 25px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 8px 20px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  text-decoration: none;
+}
+
+.install-button:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  background: linear-gradient(135deg, #1a1a1a 0%, #333 50%, #1a1a1a 100%);
+}
+
+.install-button:active {
+  transform: translateY(-1px) scale(0.98);
+  transition: all 0.1s ease;
+}
+
+.install-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.install-button:hover::before {
+  left: 100%;
+}
+
+.install-icon {
+  font-size: 20px;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+.qr-section {
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(0, 0, 0, 0.08);
+  border-radius: 24px;
+  padding: 35px;
+  margin: 35px 0;
+  backdrop-filter: blur(10px);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.qr-title {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 25px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.qr-container {
+  margin: 0 auto 25px;
+  width: 220px;
+  height: 220px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #fff;
+  border: 3px solid #e8e8e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  position: relative;
+}
+
+.qr-note {
+  font-size: 14px;
+  color: #666;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.device-status {
+  margin: 20px 0;
+  padding: 15px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.device-status.supported {
+  background: rgba(0, 128, 0, 0.1);
+  color: #006400;
+  border: 1px solid rgba(0, 128, 0, 0.2);
+}
+
+.device-status.ios {
+  background: rgba(0, 123, 255, 0.1);
+  color: #0056b3;
+  border: 1px solid rgba(0, 123, 255, 0.2);
+}
+
+.device-status.installed {
+  background: rgba(0, 128, 0, 0.1);
+  color: #006400;
+  border: 1px solid rgba(0, 128, 0, 0.2);
+}
+
+.footer {
+  margin-top: 50px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 400;
+}
+
+.back-button-wrapper {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.back-button {
+  display: inline-block;
+  background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+  color: #fff;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.back-button:hover {
+  background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+  transform: translateY(-2px);
+}
+
+/* Popup Overlay */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: none;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.popup-overlay.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* iOS Instructions Popup */
+.ios-instructions {
+  background: white;
+  border-radius: 20px;
+  max-width: 400px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  animation: slideUp 0.3s ease;
+  display: none;
+}
+
+.ios-instructions.active {
+  display: block;
+}
+
+.close-popup {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: #f3f4f6;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 18px;
+  font-weight: bold;
+  color: #6b7280;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.close-popup:hover {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.popup-header {
+  text-align: center;
+  padding: 30px 20px 20px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.popup-icon {
+  font-size: 48px;
+  margin-bottom: 15px;
+}
+
+.popup-header h3 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.popup-subtitle {
+  color: #6b7280;
+  font-size: 16px;
+}
+
+.steps-container {
+  padding: 20px;
+}
+
+.step {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 20px 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.step:last-child {
+  border-bottom: none;
+}
+
+.step-number {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.step-text {
+  flex: 1;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #374151;
+  padding-top: 4px;
+}
+
+.step-text strong {
+  color: #111827;
+  font-weight: 600;
+}
+
+.share-icon {
+  background: #e5e7eb;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+/* Success Message */
+.success-message {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #10b981;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 12px;
+  display: none;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  z-index: 1001;
+  animation: slideDown 0.3s ease;
+}
+
+.success-message.show {
+  display: flex;
+}
+
+/* Fallback Message */
+.fallback-message {
+  background: #fef3c7;
+  border: 1px solid #f59e0b;
+  color: #92400e;
+  padding: 15px;
+  border-radius: 12px;
+  margin-top: 20px;
+  font-size: 14px;
+  line-height: 1.5;
+  display: none;
+}
+
+.fallback-message.show {
+  display: block;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from { 
+    opacity: 0;
+    transform: translate(-50%, -20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 35px 25px;
+    margin: 15px;
+    border-radius: 24px;
+  }
+
+  .qr-container {
+    width: 200px;
+    height: 200px;
+  }
+
+  .qr-section {
+    padding: 25px;
+  }
+
+  .install-button {
+    padding: 20px 32px;
+    font-size: 16px;
+  }
+  
+  .ios-instructions {
+    margin: 10px;
+    border-radius: 15px;
+  }
+  
+  .popup-header {
+    padding: 25px 15px 15px;
+  }
+  
+  .steps-container {
+    padding: 15px;
+  }
+}
+</style>
 </head>
 <body>
   <div class="container">
@@ -331,6 +547,10 @@
       <a href="https://ads4u.store/leslie-business-card/" class="back-button">
         ← To Main Card
       </a>
+    </div>
+
+    <div class="footer">
+      &copy; 2025 ADS4U
     </div>
   </div>
 
@@ -380,236 +600,8 @@
     <strong>💡 Tip:</strong> You can bookmark this page or scan the QR code with your camera to access Leslie's contact information anytime.
   </div>
 
-
-
-
-<style>
-/* Popup Overlay */
-.popup-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(4px);
-    display: none;
-    z-index: 1000;
-    animation: fadeIn 0.3s ease;
-}
-
-.popup-overlay.active {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
-
-/* iOS Instructions Popup */
-.ios-instructions {
-    background: white;
-    border-radius: 20px;
-    max-width: 400px;
-    width: 100%;
-    max-height: 90vh;
-    overflow-y: auto;
-    position: relative;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-    animation: slideUp 0.3s ease;
-}
-
-.close-popup {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    background: #f3f4f6;
-    border: none;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    font-size: 18px;
-    font-weight: bold;
-    color: #6b7280;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-}
-
-.close-popup:hover {
-    background: #e5e7eb;
-    color: #374151;
-}
-
-.popup-header {
-    text-align: center;
-    padding: 30px 20px 20px;
-    border-bottom: 1px solid #e5e7eb;
-}
-
-.popup-icon {
-    font-size: 48px;
-    margin-bottom: 15px;
-}
-
-.popup-header h3 {
-    font-size: 22px;
-    font-weight: 600;
-    color: #111827;
-    margin-bottom: 8px;
-}
-
-.popup-subtitle {
-    color: #6b7280;
-    font-size: 16px;
-}
-
-.steps-container {
-    padding: 20px;
-}
-
-.step {
-    display: flex;
-    align-items: flex-start;
-    gap: 15px;
-    padding: 20px 0;
-    border-bottom: 1px solid #f3f4f6;
-}
-
-.step:last-child {
-    border-bottom: none;
-}
-
-.step-number {
-    background: linear-gradient(135deg, #4f46e5, #7c3aed);
-    color: white;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
-    font-size: 14px;
-    flex-shrink: 0;
-}
-
-.step-text {
-    flex: 1;
-    font-size: 16px;
-    line-height: 1.5;
-    color: #374151;
-    padding-top: 4px;
-}
-
-.step-text strong {
-    color: #111827;
-    font-weight: 600;
-}
-
-.share-icon {
-    background: #e5e7eb;
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-size: 14px;
-}
-
-/* Success Message */
-.success-message {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #10b981;
-    color: white;
-    padding: 15px 25px;
-    border-radius: 12px;
-    display: none;
-    align-items: center;
-    gap: 10px;
-    font-weight: 500;
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
-    z-index: 1001;
-    animation: slideDown 0.3s ease;
-}
-
-.success-message.show {
-    display: flex;
-}
-
-/* Fallback Message */
-.fallback-message {
-    background: #fef3c7;
-    border: 1px solid #f59e0b;
-    color: #92400e;
-    padding: 15px;
-    border-radius: 12px;
-    margin-top: 20px;
-    font-size: 14px;
-    line-height: 1.5;
-    display: none;
-}
-
-.fallback-message.show {
-    display: block;
-}
-
-/* Animations */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes slideUp {
-    from { 
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to { 
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes slideDown {
-    from { 
-        opacity: 0;
-        transform: translate(-50%, -20px);
-    }
-    to { 
-        opacity: 1;
-        transform: translate(-50%, 0);
-    }
-}
-
-/* Responsive */
-@media (max-width: 480px) {
-    .ios-instructions {
-        margin: 10px;
-        border-radius: 15px;
-    }
-    
-    .popup-header {
-        padding: 25px 15px 15px;
-    }
-    
-    .steps-container {
-        padding: 15px;
-    }
-
-}
-
-</style>
-
-        <div class="footer">
-        &copy; 2025 ADS4U
-        </div>
-    </div>
-    <!-- Load QRCode Library -->
-    
-    <script>
-        class PWAInstaller {
+  <script>
+    class PWAInstaller {
       constructor() {
         this.deferredPrompt = null;
         this.installBtn = document.getElementById('installBtn');
@@ -639,23 +631,53 @@
       }
 
       setupEventListeners() {
+        // PWA install prompt
         window.addEventListener('beforeinstallprompt', (e) => {
           e.preventDefault();
           this.deferredPrompt = e;
           this.updateUI();
         });
 
-        this.installBtn?.addEventListener('click', () => this.handleInstall());
-        this.closePopup?.addEventListener('click', () => this.hideIOSInstructions());
-        this.popupOverlay?.addEventListener('click', () => this.hideIOSInstructions());
-        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') this.hideIOSInstructions(); });
+        // Button click handler
+        this.installBtn?.addEventListener('click', (e) => {
+          e.preventDefault();
+          this.handleInstall();
+        });
 
-        window.addEventListener('appinstalled', () => this.showSuccess());
-        window.matchMedia('(display-mode: standalone)').addEventListener('change', (e) => { if (e.matches) this.showSuccess(); });
+        // Popup close handlers
+        this.closePopup?.addEventListener('click', (e) => {
+          e.preventDefault();
+          this.hideIOSInstructions();
+        });
+
+        this.popupOverlay?.addEventListener('click', (e) => {
+          if (e.target === this.popupOverlay) {
+            this.hideIOSInstructions();
+          }
+        });
+
+        // Keyboard handler
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            this.hideIOSInstructions();
+          }
+        });
+
+        // App installed handlers
+        window.addEventListener('appinstalled', () => {
+          this.showSuccess();
+        });
+
+        window.matchMedia('(display-mode: standalone)').addEventListener('change', (e) => {
+          if (e.matches) {
+            this.showSuccess();
+          }
+        });
       }
 
       updateUI() {
         let statusText = '', statusClass = '';
+        
         if (this.isStandalone) {
           statusText = '✅ Already installed as an app!';
           statusClass = 'installed';
@@ -676,18 +698,30 @@
         } else {
           statusText = '💡 Bookmark this page for easy access';
           statusClass = 'supported';
-          this.installText.textContent = 'Bookmark Page';
+          this.installText.textContent = 'Add to Bookmarks';
         }
-        this.deviceStatus.textContent = statusText;
-        this.deviceStatus.className = `device-status ${statusClass}`;
+
+        if (this.deviceStatus) {
+          this.deviceStatus.textContent = statusText;
+          this.deviceStatus.className = `device-status ${statusClass}`;
+        }
       }
 
       async handleInstall() {
+        console.log('Install button clicked');
+        
         if (this.deferredPrompt) {
           try {
             this.deferredPrompt.prompt();
             const { outcome } = await this.deferredPrompt.userChoice;
-            if (outcome === 'accepted') this.showSuccess();
+            console.log('User choice:', outcome);
+            
+            if (outcome === 'accepted') {
+              this.showSuccess();
+            } else {
+              this.showFallback();
+            }
+            
             this.deferredPrompt = null;
           } catch (error) {
             console.error('Install prompt failed:', error);
@@ -696,37 +730,55 @@
         } else if (this.isIOS && this.isSafari) {
           this.showIOSInstructions();
         } else if (this.isIOS) {
-          window.location.href = `https://ads4u.store/leslie-business-card/`;
+          // Try to open in Safari
+          const safariUrl = `https://ads4u.store/leslie-business-card/`;
+          window.location.href = safariUrl;
           setTimeout(() => this.showFallback(), 2000);
         } else {
-          this.showFallback();
+          // Fallback for other browsers - try to bookmark
+          if (window.external && window.external.AddFavorite) {
+            window.external.AddFavorite(location.href, document.title);
+          } else {
+            this.showFallback();
+          }
         }
       }
 
       showIOSInstructions() {
-        this.popupOverlay.style.display = 'block';
-        this.iosInstructions.style.display = 'block';
+        console.log('Showing iOS instructions');
+        this.popupOverlay.classList.add('active');
+        this.iosInstructions.classList.add('active');
         document.body.style.overflow = 'hidden';
       }
 
       hideIOSInstructions() {
-        this.popupOverlay.style.display = 'none';
-        this.iosInstructions.style.display = 'none';
+        console.log('Hiding iOS instructions');
+        this.popupOverlay.classList.remove('active');
+        this.iosInstructions.classList.remove('active');
         document.body.style.overflow = 'auto';
       }
 
       showSuccess() {
-        this.successMessage.style.display = 'flex';
-        this.installBtn.style.display = 'none';
-        this.deviceStatus.textContent = '✅ Successfully installed!';
-        this.deviceStatus.className = 'device-status installed';
+        this.successMessage.classList.add('show');
+        if (this.installBtn) {
+          this.installBtn.style.display = 'none';
+        }
+        if (this.deviceStatus) {
+          this.deviceStatus.textContent = '✅ Successfully installed!';
+          this.deviceStatus.className = 'device-status installed';
+        }
         this.hideIOSInstructions();
+        
+        // Auto-hide success message after 5 seconds
+        setTimeout(() => {
+          this.successMessage.classList.remove('show');
+        }, 5000);
       }
 
       showFallback() {
-        this.fallbackMessage.style.display = 'block';
+        this.fallbackMessage.classList.add('show');
         setTimeout(() => {
-          this.fallbackMessage.style.display = 'none';
+          this.fallbackMessage.classList.remove('show');
         }, 8000);
       }
     }
@@ -739,7 +791,7 @@
       }
 
       generateQR() {
-        if (typeof QRCode !== 'undefined') {
+        if (typeof QRCode !== 'undefined' && this.qrElement) {
           this.qrElement.innerHTML = '';
           new QRCode(this.qrElement, {
             text: this.qrUrl,
@@ -750,23 +802,26 @@
             correctLevel: QRCode.CorrectLevel.M
           });
         } else {
-          console.error('QRCode library not available');
+          console.error('QRCode library not available or element not found');
         }
       }
     }
 
+    // Initialize everything when DOM is ready
     document.addEventListener('DOMContentLoaded', () => {
+      console.log('DOM loaded, initializing...');
       new PWAInstaller();
       new QRGenerator();
+      
+      // Service Worker registration
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
           navigator.serviceWorker.register('/service-worker.js')
             .then(reg => console.log('✅ Service Worker registered:', reg))
-            .catch(err => console.error('❌ SW registration failed:', err));
+            .catch(err => console.log('ℹ️ SW registration failed (normal in dev):', err));
         });
       }
     });
-
- </script>
- </body>
-  </html>
+  </script>
+</body>
+</html>
